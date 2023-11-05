@@ -729,6 +729,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8684286312460255971, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
   m_PrefabInstance: {fileID: 1606978456}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1658337812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 847230601590794087, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
+  m_PrefabInstance: {fileID: 2117956318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1825839735 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 144121349016570348, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
@@ -764,12 +769,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 312914706792725180, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2117956323}
+    - target: {fileID: 312914706792725180, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 312914706792725180, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 312914706792725180, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: QuitButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 312914706792725180, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 847230601590794087, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
       propertyPath: m_Name
       value: QuitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 847230601590794087, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2509791286703191998, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
       propertyPath: m_Color.a
@@ -894,13 +919,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 847230601590794087, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 2117956323}
   m_SourcePrefab: {fileID: 100100000, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
 --- !u!224 &2117956319 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8161993980389436520, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
   m_PrefabInstance: {fileID: 2117956318}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2117956323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658337812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813c3b6fea20102409cf25b0cf613728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
