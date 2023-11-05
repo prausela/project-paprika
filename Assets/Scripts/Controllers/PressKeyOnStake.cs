@@ -62,7 +62,7 @@ public class PressKeyOnStake : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D collider) {
-        if(collider.gameObject.name == "stake") {
+        if(!gameManager.gameOver && collider.gameObject.name == "stake") {
             inContactWithStake = false;
 
             player1_success ??= false;
