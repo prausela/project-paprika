@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +36,11 @@ public class GameManager : MonoBehaviour
 
     public bool gameOver = false;
 
+    [SerializeField] private AudioSource _audioManager;
+
+    private double _songDuration;
+    private double _timeElapsed;
+
     public void SwitchColorModePlayer() {
         Player1InColorMode = !Player1InColorMode;
 
@@ -51,12 +58,30 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _songDuration = _audioManager.time + 5f;
+        
         SwitchColorModePlayer();
 
         Player1HealthBar.fillAmount = (float)Player1Health / (float)MaxHealth;
         Player2HealthBar.fillAmount = (float)Player2Health / (float)MaxHealth;
 
         StartCoroutine(SwitchColorMode());
+    }
+
+    void Update()
+    {
+        _timeElapsed += Time.deltaTime;
+        if (_timeElapsed > _songDuration)
+        {
+            if(Player1Health < Player2Health) {
+                EndGame(Player.PLAYER_2);
+            } else if(Player2Health < Player1Health) {
+                EndGame(Player.PLAYER_1);
+            } else {
+                //TODO: Replace with tie
+                EndGame(Player.PLAYER_1);
+            }
+        }
     }
 
     public void ScorePoint(Player winner) {
