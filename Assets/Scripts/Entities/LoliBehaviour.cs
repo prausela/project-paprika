@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class LoliBehaviour : MonoBehaviour
 {
+    [SerializeField] private GameObject _loliReady;
     [SerializeField] private GameObject _loliCorrect;
     [SerializeField] private GameObject _loliCorrect2;
     [SerializeField] private GameObject _loliIncorrect;
 
     public void GotIt()
     {
+        _loliReady.SetActive(false);
         if (_loliCorrect.activeSelf)
         {
             _loliCorrect.SetActive(false);
@@ -26,6 +28,7 @@ public class LoliBehaviour : MonoBehaviour
 
     public void DidntGetIt()
     {
+        _loliReady.SetActive(false);
         _loliCorrect.SetActive(false);
         _loliCorrect2.SetActive(false);
         _loliIncorrect.SetActive(true);
