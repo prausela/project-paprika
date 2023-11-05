@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -103,13 +104,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void EndGame(Player? winner) {
+    void EndGame(Player? winner) {
         Debug.Log(winner+" wins!");
         gameOver = true;
         if(Player2IsAI && winner == Player.PLAYER_2)
             AudioManager.PlayFailureTheme();
         else
             AudioManager.PlayVictoryTheme();
+        StartCoroutine(ReturnToMenu());
+    }
+
+    IEnumerator ReturnToMenu() {
+        yield return new WaitForSeconds(7f);
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     IEnumerator SwitchColorMode() {
