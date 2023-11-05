@@ -1810,7 +1810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player2IsAI: 1
-  ChanceOfAISucceeding: 0.4
+  ChanceOfAISucceeding: 1
   MaxHealth: 10
   SpawnIntervalInSeconds: 1
   ColorModeChangeChanceIntervalInSeconds: 2
@@ -1821,6 +1821,7 @@ MonoBehaviour:
   Player2Buttons: {fileID: 1145477366}
   AudioManager: {fileID: 84695594}
   gameOver: 0
+  _audioManager: {fileID: 84695596}
 --- !u!212 &638971190
 SpriteRenderer:
   m_ObjectHideFlags: 0

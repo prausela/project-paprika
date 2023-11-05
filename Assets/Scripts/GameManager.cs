@@ -58,7 +58,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _songDuration = _audioManager.time + 5f;
+        //TODO: Uncomment audio clip length
+        //_songDuration = _audioManager.clip.length + 5f;
+        _songDuration = 20f + 5f;
+        _timeElapsed = 0;
         
         SwitchColorModePlayer();
 
@@ -71,8 +74,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         _timeElapsed += Time.deltaTime;
-        if (_timeElapsed > _songDuration)
+        if (gameOver == false && _timeElapsed > _songDuration)
         {
+            gameOver = true;
+            Debug.Log(_timeElapsed);
+            Debug.Log(_songDuration);
             if(Player1Health < Player2Health) {
                 EndGame(Player.PLAYER_2);
             } else if(Player2Health < Player1Health) {
