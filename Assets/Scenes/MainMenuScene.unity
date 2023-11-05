@@ -310,6 +310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuScene
       objectReference: {fileID: 0}
+    - target: {fileID: 1556964095177785297, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8197283746272978940, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.23878884
