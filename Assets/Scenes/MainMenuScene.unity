@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadSceneName: LoadScreenScene
+  _2PlayerType: 0
 --- !u!1001 &1195358320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -798,6 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadSceneName: TutorialScene
+  _2PlayerType: 0
 --- !u!1 &1658337812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 847230601590794087, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
@@ -821,6 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadSceneName: LoadScreenScene
+  _2PlayerType: 1
 --- !u!1001 &2117956318
 PrefabInstance:
   m_ObjectHideFlags: 0

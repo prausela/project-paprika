@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -59,6 +60,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player2IsAI = SceneParams.Player2Type == PlayerType.AI;
+        
         //TODO: Uncomment audio clip length
         //_songDuration = _audioManager.clip.length + 5f;
         _songDuration = 20f + 5f;
