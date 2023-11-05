@@ -6,12 +6,11 @@ using UnityEngine;
 
 public class LoadingText : MonoBehaviour
 {
-    public float DotSpeed => _dotSpeed;
     [SerializeField] private float _dotSpeed = 1;
 
     private TextMeshProUGUI _loadingText;
 
-    private String _textDefault;
+    private string _textDefault;
     private float _timer;
     private int _counter;
     
