@@ -7,26 +7,22 @@ public class Spawner : MonoBehaviour
     public GameObject Tile;
     public GameObject ColorModeChanger;
 
-    public float SpawnInterval = 3f;
-
-    public float ChanceOfColorModeChanger = 0.09f;
- 
-    float _time;
- 
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        _time = 0f;
+        gameManager = GameObject.Find("GameManager").gameObject.GetComponent<GameManager>();
+
+        StartCoroutine(Spawn());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-         _time += Time.deltaTime;
-        while(_time >= SpawnInterval) {
+
+    IEnumerator Spawn() {
+        while(true) {
             Instantiate(Tile, this.transform.position, Quaternion.identity);
-            _time -= SpawnInterval;
+
+            yield return new WaitForSeconds(gameManager.SpawnIntervalInSeconds);
         }
     }
 }

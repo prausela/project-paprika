@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,6 +6,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public int MaxHealth = 10;
+
+    public float SpawnIntervalInSeconds = 2f;
+
+    public float ColorModeChangeChanceIntervalInSeconds = 2f;
+
+    public float ColorModeChangeChance = 0.1f;
 
     public bool Player1InColorMode { get; private set; } = false;
 
@@ -41,15 +48,8 @@ public class GameManager : MonoBehaviour
 
         Player1HealthBar.fillAmount = (float)Player1Health / (float)MaxHealth;
         Player2HealthBar.fillAmount = (float)Player2Health / (float)MaxHealth;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //TODO ajustar probabilidad
-        if(Random.Range(0, 100000) > 99900) {
-            SwitchColorModePlayer();
-        }
+        StartCoroutine(SwitchColorMode());
     }
 
     public void ScorePoint(Player winner) {
@@ -73,5 +73,15 @@ public class GameManager : MonoBehaviour
 
     private void EndGame(Player? winner) {
         //TODO
+    }
+
+    IEnumerator SwitchColorMode() {
+        while(true) {
+            yield return new WaitForSeconds(ColorModeChangeChanceIntervalInSeconds);
+            
+            if(Random.Range(0f, 1f) > ColorModeChangeChance) {
+                SwitchColorModePlayer();
+            }
+        }
     }
 }

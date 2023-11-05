@@ -23,7 +23,7 @@ public static class Constants {
     public static readonly Dictionary<TileColor, Color> colorNameToColorMap = new Dictionary<TileColor, Color> {
         {TileColor.YELLOW, new Color(0.933f, 0.933f, 0.384f)},
         {TileColor.GREEN, new Color(0.658f, 1f, 0.658f)},
-        {TileColor.RED, new Color(1f, .0729f, 0.729f)},
+        {TileColor.RED, new Color(1f, 0.729f, 0.729f)},
         {TileColor.BLUE, new Color(0.561f, 0.843f, 1f)},
     };
 
