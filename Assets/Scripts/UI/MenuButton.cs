@@ -1,3 +1,4 @@
+using Controllers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ namespace UI
         {
             base.OnSelect(baseEventData);
             _menuCursor.ShowCursor();
+            gameObject.GetComponent<SoundEffectController>().Play();
         }
 
         public override void OnDeselect(BaseEventData baseEventData)

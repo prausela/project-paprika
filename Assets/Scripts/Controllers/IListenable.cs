@@ -8,7 +8,7 @@ namespace Controllers
         AudioSource AudioSource { get; }
 
         void InitAudioSource();
-        void PlayOnShot();
+        void PlayOnShot(AudioClip audioClip);
         void Play();
         void Stop();
     }
