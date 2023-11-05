@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
 
 
     IEnumerator Spawn() {
-        while(!gameManager.gameOver && true) {
+        while(!gameManager.gameOver) {
             GameObject tile = Instantiate(Tile, this.transform.position, Quaternion.identity);
             PressKeyOnStake pressOnStake = tile.GetComponent<PressKeyOnStake>();
             pressOnStake.SetLoliBehaviour1(_player1LoliBehaviour);

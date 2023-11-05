@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator SwitchColorMode() {
-        while(true) {
+        while(!gameOver) {
             yield return new WaitForSeconds(ColorModeChangeChanceIntervalInSeconds);
             
             if(Random.Range(0f, 1f) < ColorModeChangeChance) {
