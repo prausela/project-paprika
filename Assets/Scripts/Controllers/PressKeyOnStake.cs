@@ -9,6 +9,7 @@ public class PressKeyOnStake : MonoBehaviour
 
     private GameManager gameManager;
     private AudioManager audioManager;
+    private PathMover pathMover;
 
     private TileArrow tileArrow;
     private TileColor tileColor;
@@ -36,6 +37,7 @@ public class PressKeyOnStake : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").gameObject.GetComponent<GameManager>();
         audioManager = GameObject.Find("AudioManager").gameObject.GetComponent<AudioManager>();
+        pathMover = this.gameObject.GetComponent<PathMover>();
 
         tileArrow = Constants.GetRandomTileArrow();
         tileColor = Constants.GetRandomTileColor();
@@ -104,6 +106,9 @@ public class PressKeyOnStake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameManager.gameOver){
+            pathMover.speed = 0;
+        }
         if(inContactWithStake) {
             if(player1_success == null) {
                 foreach(KeyCode key in player1PressedKeys.Keys.Where(key => Input.GetKeyDown(key)).ToList()) {

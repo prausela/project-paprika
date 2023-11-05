@@ -476,6 +476,8 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: bfe9f987f43c42e4e85bbf9d0d4e418e, type: 3}
   missSound: {fileID: 8300000, guid: fb79453a240f33a409e06e245ef0413a, type: 3}
   modeChangeSound: {fileID: 8300000, guid: fcafbc45203852241b2af0199606574a, type: 3}
+  victoryTheme: {fileID: 8300000, guid: fc1bad31e55be47488a35c6ccc8d5842, type: 3}
+  failureTheme: {fileID: 8300000, guid: 13a52986aed6c9d429bbdab72e19ece4, type: 3}
 --- !u!4 &84695595
 Transform:
   m_ObjectHideFlags: 0
@@ -501,8 +503,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 5f6578c2fbbcb534d9f6396ef972def1, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1376,7 +1378,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f6578c2fbbcb534d9f6396ef972def1, type: 3}
@@ -1818,6 +1820,7 @@ MonoBehaviour:
   Player1Buttons: {fileID: 97694817}
   Player2Buttons: {fileID: 1145477366}
   AudioManager: {fileID: 84695594}
+  gameOver: 0
 --- !u!212 &638971190
 SpriteRenderer:
   m_ObjectHideFlags: 0

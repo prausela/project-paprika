@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     public HashSet<PressKeyOnStake> Tiles = new HashSet<PressKeyOnStake>();
 
+    public bool gameOver = false;
+
     public void SwitchColorModePlayer() {
         Player1InColorMode = !Player1InColorMode;
 
@@ -77,7 +79,12 @@ public class GameManager : MonoBehaviour
     }
 
     private void EndGame(Player? winner) {
-        //TODO
+        Debug.Log(winner+" wins!");
+        gameOver = true;
+        if(Player2IsAI && winner == Player.PLAYER_2)
+            AudioManager.PlayFailureTheme();
+        else
+            AudioManager.PlayVictoryTheme();
     }
 
     IEnumerator SwitchColorMode() {

@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip missSound;
     public AudioClip modeChangeSound;
+    public AudioClip victoryTheme;
+    public AudioClip failureTheme;
 
     public AudioSource AudioSource => _audioSource;
     private AudioSource _audioSource;
@@ -18,26 +20,38 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPlayer1HitSound()
     {
-        AudioSource.PlayOneShot(hitSound);
+        _audioSource.PlayOneShot(hitSound);
     }
 
     public void PlayPlayer2HitSound()
     {
-        AudioSource.PlayOneShot(hitSound);
+        _audioSource.PlayOneShot(hitSound);
     }
 
     public void PlayPlayer1MissSound()
     {
-        AudioSource.PlayOneShot(missSound);
+        _audioSource.PlayOneShot(missSound);
     }
 
     public void PlayPlayer2MissSound()
     {
-        AudioSource.PlayOneShot(missSound);
+        _audioSource.PlayOneShot(missSound);
     }
 
     public void PlayModeChangeSound()
     {
-        AudioSource.PlayOneShot(modeChangeSound);
+        _audioSource.PlayOneShot(modeChangeSound);
+    }
+
+    public void PlayVictoryTheme()
+    {
+        _audioSource.Stop();
+        _audioSource.PlayOneShot(victoryTheme);
+    }
+
+    public void PlayFailureTheme()
+    {
+        _audioSource.Stop();
+        _audioSource.PlayOneShot(failureTheme);
     }
 }
