@@ -8,12 +8,12 @@ public class PressKeyOnStake : MonoBehaviour
     public Sprite[] sprites;
 
     private GameManager gameManager;
+    private AudioManager audioManager;
 
     private TileArrow tileArrow;
     private TileColor tileColor;
 
     private Dictionary<KeyCode, bool> player1PressedKeys = new Dictionary<KeyCode, bool>();
-
     private Dictionary<KeyCode, bool> player2PressedKeys = new Dictionary<KeyCode, bool>();
 
     private bool inContactWithStake = false;
@@ -35,12 +35,10 @@ public class PressKeyOnStake : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").gameObject.GetComponent<GameManager>();
+        audioManager = GameObject.Find("AudioManager").gameObject.GetComponent<AudioManager>();
 
         tileArrow = Constants.GetRandomTileArrow();
         tileColor = Constants.GetRandomTileColor();
-
-        //TODO el modo de color debe estar en el Game Manager
-        SetColorModeForPlayer(gameManager.Player1InColorMode ? Player.PLAYER_1 : Player.PLAYER_2);
 
         this.gameObject.transform.Find("Tile")!.gameObject.GetComponent<SpriteRenderer>().color = Constants.colorNameToColorMap[this.tileColor];
         this.gameObject.transform.Find("Arrow")!.gameObject.GetComponent<SpriteRenderer>().sprite = sprites[(int)this.tileArrow];
@@ -57,6 +55,7 @@ public class PressKeyOnStake : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider) {
         if(collider.gameObject.name == "stake") {
             inContactWithStake = true;
+            SetColorModeForPlayer(gameManager.Player1InColorMode ? Player.PLAYER_1 : Player.PLAYER_2);
         }
     }
 
@@ -84,6 +83,11 @@ public class PressKeyOnStake : MonoBehaviour
             {
                 _player2LoliBehaviour.DidntGetIt();
             }
+            
+            if(!player1_success.Value)
+                audioManager.PlayPlayer1MissSound();
+            if(!player2_success.Value && !gameManager.Player2IsAI)
+                audioManager.PlayPlayer2MissSound();
 
             if(player1_success != player2_success) {
                 gameManager.ScorePoint(player1_success.Value ? Player.PLAYER_1 : Player.PLAYER_2);
@@ -101,6 +105,7 @@ public class PressKeyOnStake : MonoBehaviour
                 }
                 if(player1PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
                     player1_success = true;
+                    audioManager.PlayPlayer1HitSound();
                     Debug.Log("Player1 success");
                 }
             }
@@ -112,6 +117,7 @@ public class PressKeyOnStake : MonoBehaviour
                     }
                     if(player2PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
                         player2_success = true;
+                        audioManager.PlayPlayer2HitSound();
                         Debug.Log("Player2 success");
                     }
                 }

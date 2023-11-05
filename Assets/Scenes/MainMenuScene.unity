@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 149.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6116954961974772218, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e6939555df34aca43bb2838932f62ce1, type: 3}
     - target: {fileID: 8684286312460255971, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -452,6 +456,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8197283746272978940, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
   m_PrefabInstance: {fileID: 1195358320}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1492860623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 144121349016570348, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+  m_PrefabInstance: {fileID: 1606978456}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1533957904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -506,6 +515,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 145
       objectReference: {fileID: 0}
+    - target: {fileID: 6116954961974772218, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e6939555df34aca43bb2838932f62ce1, type: 3}
     - target: {fileID: 8684286312460255971, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -623,6 +636,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: HowToPlayButton
       objectReference: {fileID: 0}
+    - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1606978461}
+    - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.ChangeSceneButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: TutorialScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3565766382391488887, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
       propertyPath: m_text
       value: How to Play
@@ -631,6 +676,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 141.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6116954961974772218, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e6939555df34aca43bb2838932f62ce1, type: 3}
     - target: {fileID: 8684286312460255971, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -726,13 +775,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 144121349016570348, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1606978461}
   m_SourcePrefab: {fileID: 100100000, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
 --- !u!224 &1606978457 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8684286312460255971, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
   m_PrefabInstance: {fileID: 1606978456}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1606978461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492860623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3448818b6b29b14aaaa99aeee565a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadSceneName: TutorialScene
 --- !u!1 &1658337812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 847230601590794087, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
@@ -828,6 +893,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 125.65
       objectReference: {fileID: 0}
+    - target: {fileID: 6710987987814444913, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e6939555df34aca43bb2838932f62ce1, type: 3}
     - target: {fileID: 8161993980389436520, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
