@@ -410,6 +410,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingScene
       objectReference: {fileID: 0}
+    - target: {fileID: 6671487605613535117, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae0ef52b8863d064a9b92543418fe01a, type: 3}
+    - target: {fileID: 6671487605613535117, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
+      propertyPath: m_Color.b
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671487605613535117, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
+      propertyPath: m_Color.g
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671487605613535117, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
+      propertyPath: m_Color.r
+      value: 0.34509805
+      objectReference: {fileID: 0}
     - target: {fileID: 8197283746272978940, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.23878884
