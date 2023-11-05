@@ -1355,6 +1355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a293f0e71e9916246a8855ec21f21c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player2IsAI: 1
+  ChanceOfAISucceeding: 0.4
   MaxHealth: 10
   SpawnIntervalInSeconds: 1
   ColorModeChangeChanceIntervalInSeconds: 2
