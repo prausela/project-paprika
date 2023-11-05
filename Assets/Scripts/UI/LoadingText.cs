@@ -7,12 +7,14 @@ using UnityEngine;
 public class LoadingText : MonoBehaviour
 {
     [SerializeField] private float _dotSpeed = 1;
+    [SerializeField] private string _loadedText = "Loaded!";
 
     private TextMeshProUGUI _loadingText;
 
     private string _textDefault;
     private float _timer;
     private int _counter;
+    private bool _loaded;
     
     void Start()
     {
@@ -20,10 +22,16 @@ public class LoadingText : MonoBehaviour
         _textDefault = _loadingText.text;
         _timer = 0;
         _counter = 0;
+        _loaded = false;
     }
     
     void Update()
     {
+        if (_loaded)
+        {
+            return;
+        }
+        
         _timer += Time.deltaTime;
         if (_timer >= _dotSpeed)
         {
@@ -39,5 +47,11 @@ public class LoadingText : MonoBehaviour
             }
             _timer = 0;
         }
+    }
+
+    public void HasLoaded()
+    {
+        _loaded = true;
+        _loadingText.text = _loadedText;
     }
 }

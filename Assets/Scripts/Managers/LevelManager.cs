@@ -8,6 +8,8 @@ namespace Managers
 {
     public class LevelManager : MonoBehaviour
     {
+        [SerializeField] private LoadingText _loadingText;
+        
         void Start()
         {
             StartCoroutine(LoadAsync());
@@ -22,11 +24,13 @@ namespace Managers
             {
                 if(operation.progress >= .9f)
                 {
+                    _loadingText.HasLoaded();
                     operation.allowSceneActivation = true;
                 }
 
                 yield return null;
             }
+
             var oldScene = SceneManager.GetActiveScene();
             var newScene = SceneManager.GetSceneByName(SceneParams.GameScene);
             if(!newScene.IsValid()) yield break;

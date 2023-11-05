@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565bef1bcd1774842a532f0645794005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetScene: SampleScene
+  _loadingText: {fileID: 1786180460}
 --- !u!4 &995026729
 Transform:
   m_ObjectHideFlags: 0
@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dotSpeed: 1
+  _loadedText: Loaded!
 --- !u!1001 &1808575148
 PrefabInstance:
   m_ObjectHideFlags: 0
