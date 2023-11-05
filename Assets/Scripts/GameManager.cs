@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player1VictoryCard;
     public GameObject Player2VictoryCard;
+    public GameObject TieVictoryCard;
 
     public int Player2Health { get; private set; } = 5;
 
@@ -65,9 +66,7 @@ public class GameManager : MonoBehaviour
     {
         Player2IsAI = SceneParams.Player2Type == PlayerType.AI;
         
-        //TODO: Uncomment audio clip length
-        //_songDuration = _audioManager.clip.length + 5f;
-        _songDuration = 20f + 5f;
+        _songDuration = _audioManager.clip.length + 5f;
         _timeElapsed = 0;
         
         SwitchColorModePlayer();
@@ -77,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         Player1VictoryCard.SetActive(false);
         Player2VictoryCard.SetActive(false);
+        TieVictoryCard.SetActive(false);
 
         StartCoroutine(SwitchColorMode());
     }
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
                 EndGame(Player.PLAYER_1);
             } else {
                 //TODO: Replace with tie
-                EndGame(Player.PLAYER_1);
+                EndGame(null);
             }
         }
     }
@@ -123,7 +123,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(winner+" wins!");
         gameOver = true;
 
-        if(winner == Player.PLAYER_1)
+        if(winner == null)
+            TieVictoryCard.SetActive(true);
+        else if(winner == Player.PLAYER_1)
             Player1VictoryCard.SetActive(true);
         else
             Player2VictoryCard.SetActive(true);
