@@ -303,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadSceneName: LoadScreenScene
   _2PlayerType: 0
+  _AIDifficulty: 0
 --- !u!1001 &1195358320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: SampleScene
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 979040752902738999, guid: d08e348ecfd4fe143863cb76f613e038, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -800,6 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadSceneName: TutorialScene
   _2PlayerType: 0
+  _AIDifficulty: 0
 --- !u!1 &1658337812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 847230601590794087, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
@@ -822,8 +824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3448818b6b29b14aaaa99aeee565a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadSceneName: LoadScreenScene
+  _loadSceneName: DifficultySelectionScene
   _2PlayerType: 1
+  _AIDifficulty: 0
 --- !u!1001 &2117956318
 PrefabInstance:
   m_ObjectHideFlags: 0
