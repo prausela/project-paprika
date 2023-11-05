@@ -66,22 +66,28 @@ public class PressKeyOnStake : MonoBehaviour
             player1_success ??= false;
             player2_success ??= false;
 
-            if (player1_success.GetValueOrDefault(false))
+            if (_player1LoliBehaviour != null)
             {
-                _player1LoliBehaviour.GotIt();
-            }
-            else
-            {
-                _player1LoliBehaviour.DidntGetIt();
+                if (player1_success.GetValueOrDefault(false))
+                {
+                    _player1LoliBehaviour.GotIt();
+                }
+                else
+                {
+                    _player1LoliBehaviour.DidntGetIt();
+                }
             }
 
-            if (player2_success.GetValueOrDefault(false))
+            if (_player2LoliBehaviour != null)
             {
-                _player2LoliBehaviour.GotIt();
-            }
-            else
-            {
-                _player2LoliBehaviour.DidntGetIt();
+                if (player2_success.GetValueOrDefault(false))
+                {
+                    _player2LoliBehaviour.GotIt();
+                }
+                else
+                {
+                    _player2LoliBehaviour.DidntGetIt();
+                }
             }
             
             if(!player1_success.Value)
