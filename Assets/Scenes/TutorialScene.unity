@@ -1789,20 +1789,32 @@ PrefabInstance:
       value: MenuScene
       objectReference: {fileID: 0}
     - target: {fileID: 1556964095177785297, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556964095177785297, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556964095177785297, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.8276667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556964095177785297, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -699.97
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1556964095177785297, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -138.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1556964095177785297, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -645.99994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1556964095177785297, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 108
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8197283746272978940, guid: ab08385952c72dd418b893eb9a2de116, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2526,6 +2538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadSceneName: MainMenuScene
+  _2PlayerType: 0
+  _AIDifficulty: 0
 --- !u!1 &1633562261
 GameObject:
   m_ObjectHideFlags: 0
