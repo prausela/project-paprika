@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 847230601590794087, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
       propertyPath: m_Name
-      value: MenuOptionButton Variant
+      value: MenuOptionButton
       objectReference: {fileID: 0}
     - target: {fileID: 3723799774936231259, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.25
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 3723799774936231259, guid: 91228cc5287627f40a0bd15922a3136c, type: 3}
       propertyPath: m_SizeDelta.x
