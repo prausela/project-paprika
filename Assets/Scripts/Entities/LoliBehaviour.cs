@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class LoliBehaviour : MonoBehaviour
     public void DidntGetIt()
     {
         _loliCorrect.SetActive(false);
-        _loliIncorrect.SetActive(false);
+        _loliCorrect2.SetActive(false);
         _loliIncorrect.SetActive(true);
     }
 }

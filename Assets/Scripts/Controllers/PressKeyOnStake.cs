@@ -20,6 +20,12 @@ public class PressKeyOnStake : MonoBehaviour
     private bool? player1_success = null;
     private bool? player2_success = null;
 
+    private LoliBehaviour _player1LoliBehaviour;
+    private LoliBehaviour _player2LoliBehaviour;
+
+    public void SetLoliBehaviour1(LoliBehaviour loliBehaviour) => _player1LoliBehaviour = loliBehaviour;
+    public void SetLoliBehaviour2(LoliBehaviour loliBehaviour) => _player2LoliBehaviour = loliBehaviour;
+
     public void SetColorModeForPlayer(Player playerInColorMode) {
         SetPressedKeysDictionary(playerInColorMode, true);
         SetPressedKeysDictionary(playerInColorMode == Player.PLAYER_1 ? Player.PLAYER_2 : Player.PLAYER_1, false);
@@ -60,6 +66,24 @@ public class PressKeyOnStake : MonoBehaviour
 
             player1_success ??= false;
             player2_success ??= false;
+
+            if (player1_success.GetValueOrDefault(false))
+            {
+                _player1LoliBehaviour.GotIt();
+            }
+            else
+            {
+                _player1LoliBehaviour.DidntGetIt();
+            }
+
+            if (player2_success.GetValueOrDefault(false))
+            {
+                _player2LoliBehaviour.GotIt();
+            }
+            else
+            {
+                _player2LoliBehaviour.DidntGetIt();
+            }
 
             if(player1_success != player2_success) {
                 gameManager.ScorePoint(player1_success.Value ? Player.PLAYER_1 : Player.PLAYER_2);
