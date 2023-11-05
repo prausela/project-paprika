@@ -1717,8 +1717,8 @@ MonoBehaviour:
   ChanceOfAISucceeding: 1
   MaxHealth: 10
   SpawnIntervalInSeconds: 1
-  ColorModeChangeChanceIntervalInSeconds: 2
-  ColorModeChangeChance: 0.1
+  ColorModeChangeChanceIntervalInSeconds: 3
+  ColorModeChangeChance: 0.35
   Player1HealthBar: {fileID: 887606850}
   Player2HealthBar: {fileID: 1242800202}
   Player1VictoryCard: {fileID: 1634726218}

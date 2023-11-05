@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Player2IsAI = SceneParams.Player2Type == PlayerType.AI;
+        ChanceOfAISucceeding = SceneParams.AIDifficulty;
         
         _songDuration = _audioManager.clip.length + 5f;
         _timeElapsed = 0;
