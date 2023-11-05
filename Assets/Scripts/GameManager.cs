@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public bool Player2IsAI = true;
+
+    public float ChanceOfAISucceeding = 0.65f;
+
     public int MaxHealth = 10;
 
     public float SpawnIntervalInSeconds = 2f;
@@ -79,8 +83,8 @@ public class GameManager : MonoBehaviour
         while(true) {
             yield return new WaitForSeconds(ColorModeChangeChanceIntervalInSeconds);
             
-            if(Random.Range(0f, 1f) > ColorModeChangeChance) {
-                SwitchColorModePlayer();
+            if(Random.Range(0f, 1f) < ColorModeChangeChance) {
+                //SwitchColorModePlayer();
             }
         }
     }

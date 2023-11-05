@@ -81,13 +81,20 @@ public class PressKeyOnStake : MonoBehaviour
                 }
             }
 
-            if(player2_success == null) {
-                foreach(KeyCode key in player2PressedKeys.Keys.Where(key => Input.GetKeyDown(key)).ToList()) {
-                    player2PressedKeys[key] = true;
+            if(!gameManager.Player2IsAI) {
+                if(player2_success == null) {
+                    foreach(KeyCode key in player2PressedKeys.Keys.Where(key => Input.GetKeyDown(key)).ToList()) {
+                        player2PressedKeys[key] = true;
+                    }
+                    if(player2PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
+                        player2_success = true;
+                        Debug.Log("Player2 success");
+                    }
                 }
-                if(player2PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
+            } else {
+                if(Random.Range(0f, 1f) < gameManager.ChanceOfAISucceeding) {
                     player2_success = true;
-                    Debug.Log("Player2 success");
+                    //Debug.Log("Player2 AI success");
                 }
             }
         }
