@@ -8,7 +8,7 @@ namespace Controllers
         #region IListenable_Properties
         
         public AudioClip AudioClip => _audioClip;
-        [SerializeField] private AudioClip _audioClip;
+        private AudioClip _audioClip;
 
         public AudioSource AudioSource => _audioSource;
         private AudioSource _audioSource;
@@ -20,10 +20,10 @@ namespace Controllers
         public void InitAudioSource()
         {
             _audioSource = GetComponent<AudioSource>();
-            _audioSource.clip = AudioClip;
+            _audioClip = AudioSource.clip;
         }
 
-        public void PlayOnShot() => AudioSource.PlayOneShot(AudioClip);
+        public void PlayOnShot(AudioClip audioClip) => AudioSource.PlayOneShot(audioClip);
 
         public void Play() => AudioSource.Play();
 
