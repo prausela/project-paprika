@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player1Buttons;
     public GameObject Player2Buttons;
+    public AudioManager AudioManager;
 
     public HashSet<PressKeyOnStake> Tiles = new HashSet<PressKeyOnStake>();
 
@@ -84,7 +85,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(ColorModeChangeChanceIntervalInSeconds);
             
             if(Random.Range(0f, 1f) < ColorModeChangeChance) {
-                //SwitchColorModePlayer();
+                SwitchColorModePlayer();
+                AudioManager.PlayModeChangeSound();
             }
         }
     }
