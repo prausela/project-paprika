@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     public Image Player1HealthBar;
     public Image Player2HealthBar;
 
+    public GameObject Player1VictoryCard;
+    public GameObject Player2VictoryCard;
+
     public int Player2Health { get; private set; } = 5;
 
     public GameObject Player1Buttons;
@@ -71,6 +74,9 @@ public class GameManager : MonoBehaviour
 
         Player1HealthBar.fillAmount = (float)Player1Health / (float)MaxHealth;
         Player2HealthBar.fillAmount = (float)Player2Health / (float)MaxHealth;
+
+        Player1VictoryCard.SetActive(false);
+        Player2VictoryCard.SetActive(false);
 
         StartCoroutine(SwitchColorMode());
     }
@@ -116,10 +122,17 @@ public class GameManager : MonoBehaviour
     void EndGame(Player? winner) {
         Debug.Log(winner+" wins!");
         gameOver = true;
+
+        if(winner == Player.PLAYER_1)
+            Player1VictoryCard.SetActive(true);
+        else
+            Player2VictoryCard.SetActive(true);
+
         if(Player2IsAI && winner == Player.PLAYER_2)
             AudioManager.PlayFailureTheme();
         else
             AudioManager.PlayVictoryTheme();
+
         StartCoroutine(ReturnToMenu());
     }
 
