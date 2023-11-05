@@ -132,6 +132,10 @@ public class PressKeyOnStake : MonoBehaviour
                     player2_success = true;
                     //Debug.Log("Player2 AI success");
                 }
+                else
+                {
+                    player2_success = false;
+                }
             }
         }
     }
