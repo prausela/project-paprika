@@ -134,8 +134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beginning: {fileID: 0}
+  stake: {fileID: 0}
   end: {fileID: 0}
-  speed: 2
+  gameManager: {fileID: 0}
+  conductor: {fileID: 0}
 --- !u!61 &6952528919101373115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,7 +181,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &2462987728166968598
 Rigidbody2D:

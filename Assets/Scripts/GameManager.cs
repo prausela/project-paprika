@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     public int MaxHealth = 10;
 
-    public float SpawnIntervalInSeconds = 2f;
-
     public float ColorModeChangeChanceIntervalInSeconds = 2f;
 
     public float ColorModeChangeChance = 0.1f;
@@ -24,6 +22,7 @@ public class GameManager : MonoBehaviour
     public bool Player1InColorMode { get; private set; } = false;
 
     public int Player1Health { get; private set; } = 5;
+    public int Player2Health { get; private set; } = 5;
 
     public Image Player1HealthBar;
     public Image Player2HealthBar;
@@ -31,8 +30,6 @@ public class GameManager : MonoBehaviour
     public GameObject Player1VictoryCard;
     public GameObject Player2VictoryCard;
     public GameObject TieVictoryCard;
-
-    public int Player2Health { get; private set; } = 5;
 
     public GameObject Player1Buttons;
     public GameObject Player2Buttons;
@@ -67,11 +64,13 @@ public class GameManager : MonoBehaviour
         Player2IsAI = SceneParams.Player2Type == PlayerType.AI;
         ChanceOfAISucceeding = SceneParams.AIDifficulty;
         
-        _songDuration = _audioManager.clip.length + 5f;
+        _songDuration = _audioManager.clip.length + 3f;
         _timeElapsed = 0;
         
         SwitchColorModePlayer();
 
+        Player1Health = MaxHealth/2;
+        Player2Health = MaxHealth/2;
         Player1HealthBar.fillAmount = (float)Player1Health / (float)MaxHealth;
         Player2HealthBar.fillAmount = (float)Player2Health / (float)MaxHealth;
 

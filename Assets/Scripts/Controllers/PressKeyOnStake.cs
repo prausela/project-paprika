@@ -55,14 +55,14 @@ public class PressKeyOnStake : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.gameObject.name == "stake") {
+        if(collider.gameObject.name == "Stake") {
             inContactWithStake = true;
             SetColorModeForPlayer(gameManager.Player1InColorMode ? Player.PLAYER_1 : Player.PLAYER_2);
         }
     }
 
     void OnTriggerExit2D(Collider2D collider) {
-        if(!gameManager.gameOver && collider.gameObject.name == "stake") {
+        if(!gameManager.gameOver && collider.gameObject.name == "Stake") {
             inContactWithStake = false;
 
             player1_success ??= false;
@@ -106,9 +106,6 @@ public class PressKeyOnStake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.gameOver){
-            pathMover.speed = 0;
-        }
         if(inContactWithStake) {
             if(player1_success == null) {
                 foreach(KeyCode key in player1PressedKeys.Keys.Where(key => Input.GetKeyDown(key)).ToList()) {
@@ -117,7 +114,6 @@ public class PressKeyOnStake : MonoBehaviour
                 if(player1PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
                     player1_success = true;
                     audioManager.PlayPlayer1HitSound();
-                    Debug.Log("Player1 success");
                 }
             }
 
@@ -129,13 +125,11 @@ public class PressKeyOnStake : MonoBehaviour
                     if(player2PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
                         player2_success = true;
                         audioManager.PlayPlayer2HitSound();
-                        Debug.Log("Player2 success");
                     }
                 }
             } else {
                 if(Random.Range(0f, 1f) < gameManager.ChanceOfAISucceeding) {
                     player2_success = true;
-                    //Debug.Log("Player2 AI success");
                 }
                 else
                 {

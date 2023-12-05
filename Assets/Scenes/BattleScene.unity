@@ -370,6 +370,7 @@ GameObject:
   - component: {fileID: 84695595}
   - component: {fileID: 84695594}
   - component: {fileID: 84695596}
+  - component: {fileID: 84695597}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -419,9 +420,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f6578c2fbbcb534d9f6396ef972def1, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 49e03363b53aab046ad062117c36eb56, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -505,6 +506,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &84695597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84695593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34460f50d62eb94683859f132d995da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secPerBeat: 0
+  songPosition: 0
+  songPositionInBeats: 0
+  dspSongTime: 0
+  musicSource: {fileID: 84695596}
+  songBpm: 56
+  firstBeatOffset: 0.9
+  secondsUntilStart: 3
 --- !u!1 &97694817
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +551,7 @@ Transform:
   m_GameObject: {fileID: 97694817}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2, z: 2.819669}
+  m_LocalPosition: {x: 0.07, y: 2, z: 2.819669}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -700,7 +721,7 @@ Transform:
   m_GameObject: {fileID: 201844671}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.83, y: -3.4300003, z: 0}
+  m_LocalPosition: {x: 0.06, y: -3.4300003, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5867, z: 0.5867}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1590,7 +1611,7 @@ Transform:
   m_GameObject: {fileID: 633442272}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.55, y: 1.1099999, z: 5.048667}
+  m_LocalPosition: {x: -1.802, y: 1.1099999, z: 5.048667}
   m_LocalScale: {x: 1.249998, y: 0.99000186, z: 0.85618085}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1680,8 +1701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player2IsAI: 1
   ChanceOfAISucceeding: 1
-  MaxHealth: 10
-  SpawnIntervalInSeconds: 1
+  MaxHealth: 50
   ColorModeChangeChanceIntervalInSeconds: 3
   ColorModeChangeChance: 0.35
   Player1HealthBar: {fileID: 887606850}
@@ -2583,7 +2603,7 @@ Transform:
   m_GameObject: {fileID: 1145477366}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2, z: 2.819669}
+  m_LocalPosition: {x: 0.248, y: 2, z: 2.819669}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3369,9 +3389,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tile: {fileID: 1103148768863978098, guid: aeaf0c2731a2d6445a95871f7ebb6603, type: 3}
-  ColorModeChanger: {fileID: 0}
   _player1LoliBehaviour: {fileID: 225793332}
   _player2LoliBehaviour: {fileID: 1188464022}
+  beatsShownInAdvance: 3
+  noteTiming:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 5.66
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
+  - 32
+  - 33
+  - 34
+  - 35
+  - 36
 --- !u!1 &1411025650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,7 +3566,7 @@ GameObject:
   - component: {fileID: 1453529811}
   - component: {fileID: 1453529813}
   m_Layer: 0
-  m_Name: stake
+  m_Name: Stake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3574,7 +3633,7 @@ Transform:
   m_GameObject: {fileID: 1453529810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.53, y: -3.4300003, z: 0}
+  m_LocalPosition: {x: -7, y: -3.4300003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3787,7 +3846,7 @@ Transform:
   m_GameObject: {fileID: 1640937711}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.57, y: 1.11, z: 0}
+  m_LocalPosition: {x: -2.0000002, y: 1.11, z: 0}
   m_LocalScale: {x: -1.25, y: 0.99, z: 0.85618085}
   m_ConstrainProportionsScale: 0
   m_Children: []
