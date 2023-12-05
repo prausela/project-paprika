@@ -11,8 +11,7 @@ public class PressKeyOnStake : MonoBehaviour
     private AudioManager audioManager;
     private PathMover pathMover;
 
-    private TileArrow tileArrow;
-    private TileColor tileColor;
+    public Note note;
 
     private Dictionary<KeyCode, bool> player1PressedKeys = new Dictionary<KeyCode, bool>();
     private Dictionary<KeyCode, bool> player2PressedKeys = new Dictionary<KeyCode, bool>();
@@ -39,17 +38,14 @@ public class PressKeyOnStake : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").gameObject.GetComponent<AudioManager>();
         pathMover = this.gameObject.GetComponent<PathMover>();
 
-        tileArrow = Constants.GetRandomTileArrow();
-        tileColor = Constants.GetRandomTileColor();
-
-        this.gameObject.transform.Find("Tile")!.gameObject.GetComponent<SpriteRenderer>().color = Constants.colorNameToColorMap[this.tileColor];
-        this.gameObject.transform.Find("Arrow")!.gameObject.GetComponent<SpriteRenderer>().sprite = sprites[(int)this.tileArrow];
+        this.gameObject.transform.Find("Tile")!.gameObject.GetComponent<SpriteRenderer>().color = Constants.colorNameToColorMap[this.note.color];
+        this.gameObject.transform.Find("Arrow")!.gameObject.GetComponent<SpriteRenderer>().sprite = sprites[(int)this.note.arrow];
     }
 
     void SetPressedKeysDictionary(Player player, bool isColorMode) {
         Dictionary<KeyCode, bool> dict = player == Player.PLAYER_1 ? player1PressedKeys : player2PressedKeys;
         dict.Clear();
-        foreach(Arrow a in isColorMode ? Constants.colorKeyMap[this.tileColor] : Constants.arrowKeyCombinations[this.tileArrow]) {
+        foreach(Arrow a in isColorMode ? Constants.colorKeyMap[this.note.color] : Constants.arrowKeyCombinations[this.note.arrow]) {
             dict[Constants.GetKeyCodeForPlayer(player, a)] = false;
         }
     }
@@ -113,7 +109,7 @@ public class PressKeyOnStake : MonoBehaviour
                 }
                 if(player1PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
                     player1_success = true;
-                    audioManager.PlayPlayer1HitSound();
+                    audioManager.PlayPlayer1Note(this.note, gameManager.Player1InColorMode);
                 }
             }
 
@@ -124,7 +120,7 @@ public class PressKeyOnStake : MonoBehaviour
                     }
                     if(player2PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
                         player2_success = true;
-                        audioManager.PlayPlayer2HitSound();
+                        audioManager.PlayPlayer2Note(this.note, !gameManager.Player1InColorMode);
                     }
                 }
             } else {
