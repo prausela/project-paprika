@@ -28,40 +28,32 @@ public class Conductor : MonoBehaviour
     public float firstBeatOffset;
     
     public float secondsUntilStart;
-    private bool isPlaying;
 
     void Start()
     {
-        StartCoroutine(StartMusic());
-    }
-
-    IEnumerator StartMusic()
-    {
-
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();
 
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
-
+/*
         songPosition = -secondsUntilStart;
         songPositionInBeats = songPosition / secPerBeat;
         yield return new WaitForSeconds(secondsUntilStart);
-
+*/
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
-        isPlaying = true;
-        musicSource.Play();
+        musicSource.PlayScheduled(AudioSettings.dspTime + secondsUntilStart);
     }
 
     void Update()
     {
-        if(isPlaying)
+        if(musicSource.isPlaying)
         {
             //determine how many seconds since the song started
-            songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+            songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset - secondsUntilStart);
 
             //determine how many beats since the song started
             songPositionInBeats = songPosition / secPerBeat;

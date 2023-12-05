@@ -422,7 +422,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 49e03363b53aab046ad062117c36eb56, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
   dspSongTime: 0
   musicSource: {fileID: 84695596}
   songBpm: 56
-  firstBeatOffset: 0.9
+  firstBeatOffset: 0.85
   secondsUntilStart: 3
 --- !u!1 &97694817
 GameObject:
@@ -3408,6 +3408,7 @@ MonoBehaviour:
   - 11
   - 12
   - 13
+  - 13.66
   - 14
   - 15
   - 16
@@ -3416,6 +3417,7 @@ MonoBehaviour:
   - 19
   - 20
   - 21
+  - 21.66
   - 22
   - 23
   - 24
@@ -3424,6 +3426,7 @@ MonoBehaviour:
   - 27
   - 28
   - 29
+  - 29.66
   - 30
   - 31
   - 32

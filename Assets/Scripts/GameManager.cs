@@ -120,7 +120,6 @@ public class GameManager : MonoBehaviour
     }
 
     void EndGame(Player? winner) {
-        Debug.Log(winner+" wins!");
         gameOver = true;
 
         if(winner == null)
