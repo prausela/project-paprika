@@ -3429,7 +3429,7 @@ MonoBehaviour:
   Tile: {fileID: 1103148768863978098, guid: aeaf0c2731a2d6445a95871f7ebb6603, type: 3}
   _player1LoliBehaviour: {fileID: 225793332}
   _player2LoliBehaviour: {fileID: 1188464022}
-  beatsShownInAdvance: 3
+  beatsShownInAdvance: 4
 --- !u!1 &1411025650
 GameObject:
   m_ObjectHideFlags: 0
