@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3ecab979897e34d8130fb9468c14b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
+  arrowSprites:
   - {fileID: 21300000, guid: e7bb4d87002196d4e8c48ebc27246ad8, type: 3}
   - {fileID: 21300000, guid: 7898416cee7bfd04a8be28cbde77b39e, type: 3}
   - {fileID: 21300000, guid: cf995d8e07c45a8469f6720679ecc0d0, type: 3}

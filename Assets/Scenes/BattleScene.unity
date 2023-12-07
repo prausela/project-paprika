@@ -394,7 +394,7 @@ MonoBehaviour:
   player1Instrument:
   - {fileID: 8300000, guid: 2ab1cef7a9e76f34ea6090caf450c0f1, type: 3}
   - {fileID: 8300000, guid: 4d9701ac0cc6d03449628c5b2cb92c76, type: 3}
-  - {fileID: 8300000, guid: 35728f31e29b474429d9d1e8c0d6c261, type: 3}
+  - {fileID: 8300000, guid: da6703aabd79e09418a54924c1a4325c, type: 3}
   - {fileID: 8300000, guid: 191461a949c463240a167657a2f34137, type: 3}
   - {fileID: 8300000, guid: 332877d7d96fcad4db0c3b878bd5e1ff, type: 3}
   - {fileID: 8300000, guid: 19a50bab351fd984bae68514a80f6ef2, type: 3}

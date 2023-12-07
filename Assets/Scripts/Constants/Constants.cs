@@ -84,4 +84,8 @@ public static class Constants {
     public static KeyCode GetKeyCodeForPlayer(Player player, Arrow arrow) {
         return playerArrowKeyCodeMapper[player][arrow];
     }
+
+    public static List<KeyCode> GetPossibleKeyCodesForPlayer(Player player) {
+        return new List<KeyCode>(playerArrowKeyCodeMapper[player].Values);
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -5,133 +6,156 @@ using UnityEngine;
 
 public class PressKeyOnStake : MonoBehaviour
 {
-    public Sprite[] sprites;
+    public Sprite[] arrowSprites;
+
+    public GameObject stake;
+    public Note note;
 
     private GameManager gameManager;
     private AudioManager audioManager;
-    private PathMover pathMover;
-
-    public Note note;
-
-    private Dictionary<KeyCode, bool> player1PressedKeys = new Dictionary<KeyCode, bool>();
-    private Dictionary<KeyCode, bool> player2PressedKeys = new Dictionary<KeyCode, bool>();
-
+    
     private bool inContactWithStake = false;
-    private bool? player1_success = null;
-    private bool? player2_success = null;
 
-    private LoliBehaviour _player1LoliBehaviour;
-    private LoliBehaviour _player2LoliBehaviour;
+    // Player -> Keys that must be pressed to play the note
+    private Dictionary<Player, List<KeyCode>> noteKeys = new Dictionary<Player, List<KeyCode>>();
 
-    public void SetLoliBehaviour1(LoliBehaviour loliBehaviour) => _player1LoliBehaviour = loliBehaviour;
-    public void SetLoliBehaviour2(LoliBehaviour loliBehaviour) => _player2LoliBehaviour = loliBehaviour;
+    // Player -> Key -> True if key is being pressed
+    private Dictionary<Player, Dictionary<KeyCode, bool>> pressedKeys = new Dictionary<Player, Dictionary<KeyCode, bool>>();
 
-    public void SetColorModeForPlayer(Player playerInColorMode) {
-        SetPressedKeysDictionary(playerInColorMode, true);
-        SetPressedKeysDictionary(playerInColorMode == Player.PLAYER_1 ? Player.PLAYER_2 : Player.PLAYER_1, false);
-    }
+    // Player -> NoteState indicating if note has been played, missed or undefined
+    private Dictionary<Player, NoteState> playerSuccess = new Dictionary<Player, NoteState>();
+
+    // Player -> Behaviour of the character (controls poses)
+    private Dictionary<Player, LoliBehaviour> characterBehaviour = new Dictionary<Player, LoliBehaviour>();
+
+    public void SetLoliBehaviour(Player player, LoliBehaviour loliBehaviour) => characterBehaviour[player] = loliBehaviour;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").gameObject.GetComponent<GameManager>();
         audioManager = GameObject.Find("AudioManager").gameObject.GetComponent<AudioManager>();
-        pathMover = this.gameObject.GetComponent<PathMover>();
+
+        foreach(Player player in Enum.GetValues(typeof(Player))){
+            pressedKeys[player] = new Dictionary<KeyCode, bool>();
+            playerSuccess[player] = NoteState.PENDING;
+        }
 
         this.gameObject.transform.Find("Tile")!.gameObject.GetComponent<SpriteRenderer>().color = Constants.colorNameToColorMap[this.note.color];
-        this.gameObject.transform.Find("Arrow")!.gameObject.GetComponent<SpriteRenderer>().sprite = sprites[(int)this.note.arrow];
-    }
-
-    void SetPressedKeysDictionary(Player player, bool isColorMode) {
-        Dictionary<KeyCode, bool> dict = player == Player.PLAYER_1 ? player1PressedKeys : player2PressedKeys;
-        dict.Clear();
-        foreach(Arrow a in isColorMode ? Constants.colorKeyMap[this.note.color] : Constants.arrowKeyCombinations[this.note.arrow]) {
-            dict[Constants.GetKeyCodeForPlayer(player, a)] = false;
-        }
+        this.gameObject.transform.Find("Arrow")!.gameObject.GetComponent<SpriteRenderer>().sprite = arrowSprites[(int)this.note.arrow];
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if(collider.gameObject.name == "Stake") {
+        if(collider.gameObject == stake) {
             inContactWithStake = true;
             SetColorModeForPlayer(gameManager.Player1InColorMode ? Player.PLAYER_1 : Player.PLAYER_2);
         }
     }
 
-    void OnTriggerExit2D(Collider2D collider) {
-        if(!gameManager.gameOver && collider.gameObject.name == "Stake") {
-            inContactWithStake = false;
-
-            player1_success ??= false;
-            player2_success ??= false;
-
-            if (_player1LoliBehaviour != null)
-            {
-                if (player1_success.GetValueOrDefault(false))
-                {
-                    _player1LoliBehaviour.GotIt();
-                }
-                else
-                {
-                    _player1LoliBehaviour.DidntGetIt();
-                }
-            }
-
-            if (_player2LoliBehaviour != null)
-            {
-                if (player2_success.GetValueOrDefault(false))
-                {
-                    _player2LoliBehaviour.GotIt();
-                }
-                else
-                {
-                    _player2LoliBehaviour.DidntGetIt();
-                }
-            }
-            
-            if(!player1_success.Value)
-                audioManager.PlayPlayer1MissSound();
-            if(!player2_success.Value && !gameManager.Player2IsAI)
-                audioManager.PlayPlayer2MissSound();
-
-            if(player1_success != player2_success) {
-                gameManager.ScorePoint(player1_success.Value ? Player.PLAYER_1 : Player.PLAYER_2);
-            }
-        }
+    public void SetColorModeForPlayer(Player playerInColorMode) {
+        SetupPressedKeysDictionary(playerInColorMode, true);
+        SetupPressedKeysDictionary(playerInColorMode == Player.PLAYER_1 ? Player.PLAYER_2 : Player.PLAYER_1, false);
     }
+
+    void SetupPressedKeysDictionary(Player player, bool isColorMode) {
+        List<Arrow> noteDirections = isColorMode ? Constants.colorKeyMap[this.note.color] : Constants.arrowKeyCombinations[this.note.arrow];
+        noteKeys[player] = noteDirections.Select((direction) => Constants.GetKeyCodeForPlayer(player, direction)).ToList();
+
+        pressedKeys[player].Clear();
+        foreach(KeyCode key in Constants.GetPossibleKeyCodesForPlayer(player)) {
+            pressedKeys[player][key] = false;
+        }
+    }    
 
     // Update is called once per frame
     void Update()
     {
         if(inContactWithStake) {
-            if(player1_success == null) {
-                foreach(KeyCode key in player1PressedKeys.Keys.Where(key => Input.GetKeyDown(key)).ToList()) {
-                    player1PressedKeys[key] = true;
-                }
-                if(player1PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
-                    player1_success = true;
-                    audioManager.PlayPlayer1Note(this.note, gameManager.Player1InColorMode);
+            if(playerSuccess[Player.PLAYER_1] == NoteState.PENDING)
+            {
+                playerSuccess[Player.PLAYER_1] = checkPlayerInput(Player.PLAYER_1);
+
+                switch(playerSuccess[Player.PLAYER_1]){
+                    case NoteState.PLAYED:
+                        audioManager.PlayPlayer1Note(this.note, gameManager.Player1InColorMode);
+                        break;
+                    case NoteState.MISSED:
+                        audioManager.PlayPlayer1MissSound();
+                        break;
                 }
             }
 
-            if(!gameManager.Player2IsAI) {
-                if(player2_success == null) {
-                    foreach(KeyCode key in player2PressedKeys.Keys.Where(key => Input.GetKeyDown(key)).ToList()) {
-                        player2PressedKeys[key] = true;
-                    }
-                    if(player2PressedKeys.All((keyValuePair) => keyValuePair.Value == true)) {
-                        player2_success = true;
+            if(playerSuccess[Player.PLAYER_2] == NoteState.PENDING) {
+                if(gameManager.Player2IsAI && transform.position.x <= stake.transform.position.x) {
+                    bool notePlayedByAI = UnityEngine.Random.Range(0f, 1f) < gameManager.ChanceOfAISucceeding;
+                    playerSuccess[Player.PLAYER_2] = notePlayedByAI? NoteState.PLAYED : NoteState.MISSED;
+                } else {
+                    playerSuccess[Player.PLAYER_2] = checkPlayerInput(Player.PLAYER_2);
+                }
+
+                switch(playerSuccess[Player.PLAYER_2]){
+                    case NoteState.PLAYED:
                         audioManager.PlayPlayer2Note(this.note, !gameManager.Player1InColorMode);
-                    }
-                }
-            } else {
-                if(Random.Range(0f, 1f) < gameManager.ChanceOfAISucceeding) {
-                    player2_success = true;
-                }
-                else
-                {
-                    player2_success = false;
+                        break;
+                    case NoteState.MISSED:
+                        audioManager.PlayPlayer2MissSound();
+                        break;
                 }
             }
+        }
+    }
+    
+    NoteState checkPlayerInput(Player player) {
+        foreach(KeyCode key in pressedKeys[player].Keys.ToList()) {
+            pressedKeys[player][key] = false;
+        }
+        foreach(KeyCode key in pressedKeys[player].Keys.Where(key => Input.GetKeyDown(key)).ToList()) {
+            pressedKeys[player][key] = true;
+        }
+
+        // Assume note was hit until proven otherwise
+        bool noteHit = true;
+        foreach(KeyCode key in pressedKeys[player].Keys) {
+
+            // Pressed wrong key (instant failure)
+            if(pressedKeys[player][key] == true && !noteKeys[player].Contains(key)){
+                return NoteState.MISSED;
+            }
+                
+            // Did not press required key
+            if(pressedKeys[player][key] == false && noteKeys[player].Contains(key)){
+                noteHit = false;
+            }
+        }
+
+        if(noteHit)
+            return NoteState.PLAYED;
+        return NoteState.PENDING;       
+    }
+
+    void OnTriggerExit2D(Collider2D collider) {
+        if(!gameManager.gameOver && collider.gameObject == stake) {
+            inContactWithStake = false;
+
+            foreach(Player player in Enum.GetValues(typeof(Player))){
+                if(playerSuccess[player] == NoteState.PENDING)
+                    playerSuccess[player] = NoteState.MISSED;
+
+                if(characterBehaviour[player] != null) {
+                    if(playerSuccess[player] == NoteState.PLAYED)
+                        characterBehaviour[player].GotIt();
+                    else
+                        characterBehaviour[player].DidntGetIt();
+                }
+            }
+
+            if(playerSuccess[Player.PLAYER_1] != NoteState.PLAYED)
+                audioManager.PlayPlayer1MissSound();
+            if(playerSuccess[Player.PLAYER_2] != NoteState.PLAYED && !gameManager.Player2IsAI)
+                audioManager.PlayPlayer2MissSound();
+
+            if(playerSuccess[Player.PLAYER_1] != playerSuccess[Player.PLAYER_2])
+                gameManager.ScorePoint(playerSuccess[Player.PLAYER_1] == NoteState.PLAYED ? Player.PLAYER_1 : Player.PLAYER_2);
         }
     }
 }
