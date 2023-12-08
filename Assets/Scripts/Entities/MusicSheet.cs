@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class MusicSheet : MonoBehaviour
 {
     public Note[] notes;
+    public float[] colorModeSwitchBeats;
 }

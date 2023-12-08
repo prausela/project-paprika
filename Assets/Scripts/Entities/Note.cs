@@ -18,4 +18,9 @@ public class Note
         this.player1Enabled = player1Enabled;
         this.player2Enabled = player2Enabled;
     }
+
+    public static int CompareNoteOrder(Note n1, Note n2)
+    {
+       return n1.beat.CompareTo(n2.beat);
+    }
 }

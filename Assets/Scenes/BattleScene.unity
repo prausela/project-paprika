@@ -418,7 +418,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d37fac0c177d843428f2dfe7b3c1b760, type: 3}
   - {fileID: 8300000, guid: 3c54d61e82829704b87c35cba22c5b05, type: 3}
   missSound: {fileID: 8300000, guid: fb79453a240f33a409e06e245ef0413a, type: 3}
-  modeChangeSound: {fileID: 8300000, guid: fcafbc45203852241b2af0199606574a, type: 3}
+  modeChangeSound: {fileID: 8300000, guid: 766d5a6f000d3ec46a2eec7ab3295ea0, type: 3}
   victoryTheme: {fileID: 8300000, guid: fc1bad31e55be47488a35c6ccc8d5842, type: 3}
   failureTheme: {fileID: 8300000, guid: 13a52986aed6c9d429bbdab72e19ece4, type: 3}
 --- !u!4 &84695595
@@ -564,6 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4c3b86517067344857096c2f315a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorModeSwitchBeats: []
 --- !u!1 &97694817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,7 +1741,7 @@ MonoBehaviour:
   Player2IsAI: 1
   ChanceOfAISucceeding: 1
   MaxHealth: 50
-  ColorModeChangeChanceIntervalInSeconds: 3
+  ColorModeChangeChanceIntervalInSeconds: 4
   ColorModeChangeChance: 0.35
   Player1HealthBar: {fileID: 887606850}
   Player2HealthBar: {fileID: 1242800202}

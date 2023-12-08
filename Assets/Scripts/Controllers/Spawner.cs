@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
 
     public float beatsShownInAdvance;
     private int nextNoteIndexToSpawn = 0;
+    private int nextColorSwitchIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,12 @@ public class Spawner : MonoBehaviour
             pathMover.SetNoteBeat(sheet.notes[nextNoteIndexToSpawn].beat);
 
             nextNoteIndexToSpawn++;
+        }
+
+        if(!gameManager.gameOver && nextColorSwitchIndex < sheet.colorModeSwitchBeats.Length && sheet.colorModeSwitchBeats[nextColorSwitchIndex] <= conductor.songPositionInBeats)
+        {
+            gameManager.SwitchColorModePlayer();
+            nextColorSwitchIndex++;
         }
     }
 }
