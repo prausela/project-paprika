@@ -38,7 +38,58 @@ public class GhostWaltzMusicSheet : MusicSheet
             new Note(21f, TileArrow.DOWN, TileColor.YELLOW, true, true),
             new Note(21.66f, TileArrow.DOWN, TileColor.YELLOW, true, true),
             new Note(22f, TileArrow.DOWN, TileColor.YELLOW, true, true),
-            
+
+            new Note(24f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(25f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(26f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(27f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            ///////////////////////////////////
+            new Note(28f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(29f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(29.66f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(30f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+
+            new Note(32f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(33f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(34f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(35f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            ///////////////////////////////////
+            new Note(36f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(37f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(37.66f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(38f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+
+            new Note(40f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(41f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(42f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(43f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            ///////////////////////////////////
+            new Note(44f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(45f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(45.66f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(46f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+
+            new Note(48f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(49f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(50f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(51f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            ///////////////////////////////////
+            new Note(52f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(53f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(53.66f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(54f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+
+            new Note(56f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(57f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(58f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(59f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            ///////////////////////////////////
+            new Note(60f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(61f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(61.66f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+            new Note(62f, TileArrow.DOWN, TileColor.YELLOW, true, true),
+
+            new Note(64f, TileArrow.DOWN, TileColor.YELLOW, true, true),
         };
         Array.Sort(notes, Note.CompareNoteOrder);
 
@@ -46,6 +97,10 @@ public class GhostWaltzMusicSheet : MusicSheet
             6.75f,
             14.75f,
             22.75f,
+            30.75f,
+            38.75f,
+            46.75f,
+            54.75f
         };
     }
 
