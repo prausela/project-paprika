@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     public int MaxHealth = 10;
 
-    public float SpawnIntervalInSeconds = 2f;
-
     public float ColorModeChangeChanceIntervalInSeconds = 2f;
 
     public float ColorModeChangeChance = 0.1f;
@@ -24,6 +22,7 @@ public class GameManager : MonoBehaviour
     public bool Player1InColorMode { get; private set; } = false;
 
     public int Player1Health { get; private set; } = 5;
+    public int Player2Health { get; private set; } = 5;
 
     public Image Player1HealthBar;
     public Image Player2HealthBar;
@@ -31,8 +30,6 @@ public class GameManager : MonoBehaviour
     public GameObject Player1VictoryCard;
     public GameObject Player2VictoryCard;
     public GameObject TieVictoryCard;
-
-    public int Player2Health { get; private set; } = 5;
 
     public GameObject Player1Buttons;
     public GameObject Player2Buttons;
@@ -47,7 +44,10 @@ public class GameManager : MonoBehaviour
     private double _songDuration;
     private double _timeElapsed;
 
-    public void SwitchColorModePlayer() {
+    public void SwitchColorModePlayer(bool playSound=true) {
+        if(playSound)
+            AudioManager.PlayModeChangeSound();
+        
         Player1InColorMode = !Player1InColorMode;
 
         Player1Buttons.transform.Find("ArrowButtons").gameObject.SetActive(!Player1InColorMode);
@@ -67,19 +67,19 @@ public class GameManager : MonoBehaviour
         Player2IsAI = SceneParams.Player2Type == PlayerType.AI;
         ChanceOfAISucceeding = SceneParams.AIDifficulty;
         
-        _songDuration = _audioManager.clip.length + 5f;
+        _songDuration = _audioManager.clip.length + 3f;
         _timeElapsed = 0;
         
-        SwitchColorModePlayer();
+        SwitchColorModePlayer(false);
 
+        Player1Health = MaxHealth/2;
+        Player2Health = MaxHealth/2;
         Player1HealthBar.fillAmount = (float)Player1Health / (float)MaxHealth;
         Player2HealthBar.fillAmount = (float)Player2Health / (float)MaxHealth;
 
         Player1VictoryCard.SetActive(false);
         Player2VictoryCard.SetActive(false);
         TieVictoryCard.SetActive(false);
-
-        StartCoroutine(SwitchColorMode());
     }
 
     void Update()
@@ -88,8 +88,6 @@ public class GameManager : MonoBehaviour
         if (gameOver == false && _timeElapsed > _songDuration)
         {
             gameOver = true;
-            Debug.Log(_timeElapsed);
-            Debug.Log(_songDuration);
             if(Player1Health < Player2Health) {
                 EndGame(Player.PLAYER_2);
             } else if(Player2Health < Player1Health) {
@@ -121,7 +119,6 @@ public class GameManager : MonoBehaviour
     }
 
     void EndGame(Player? winner) {
-        Debug.Log(winner+" wins!");
         gameOver = true;
 
         if(winner == null)
@@ -142,16 +139,5 @@ public class GameManager : MonoBehaviour
     IEnumerator ReturnToMenu() {
         yield return new WaitForSeconds(7f);
         SceneManager.LoadScene("MainMenuScene");
-    }
-
-    IEnumerator SwitchColorMode() {
-        while(!gameOver) {
-            yield return new WaitForSeconds(ColorModeChangeChanceIntervalInSeconds);
-            
-            if(Random.Range(0f, 1f) < ColorModeChangeChance) {
-                SwitchColorModePlayer();
-                AudioManager.PlayModeChangeSound();
-            }
-        }
     }
 }

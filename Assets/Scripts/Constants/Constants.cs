@@ -64,24 +64,28 @@ public static class Constants {
         {
             Player.PLAYER_1,
             new Dictionary<Arrow, KeyCode> {
-                { Arrow.UP, KeyCode.UpArrow },
-                { Arrow.DOWN, KeyCode.DownArrow },
-                { Arrow.RIGHT, KeyCode.RightArrow },
-                { Arrow.LEFT, KeyCode.LeftArrow }
+                { Arrow.UP, KeyCode.W },
+                { Arrow.LEFT, KeyCode.A },
+                { Arrow.DOWN, KeyCode.S },
+                { Arrow.RIGHT, KeyCode.D },
             }
         },
         {
             Player.PLAYER_2,
             new Dictionary<Arrow, KeyCode> {
-                { Arrow.UP, KeyCode.W },
-                { Arrow.DOWN, KeyCode.S },
-                { Arrow.RIGHT, KeyCode.D },
-                { Arrow.LEFT, KeyCode.A }
+                { Arrow.UP, KeyCode.UpArrow },
+                { Arrow.DOWN, KeyCode.DownArrow },
+                { Arrow.RIGHT, KeyCode.RightArrow },
+                { Arrow.LEFT, KeyCode.LeftArrow }
             }
         }
     };
 
     public static KeyCode GetKeyCodeForPlayer(Player player, Arrow arrow) {
         return playerArrowKeyCodeMapper[player][arrow];
+    }
+
+    public static List<KeyCode> GetPossibleKeyCodesForPlayer(Player player) {
+        return new List<KeyCode>(playerArrowKeyCodeMapper[player].Values);
     }
 }

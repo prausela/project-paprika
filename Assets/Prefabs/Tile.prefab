@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 2552368406506080730}
   - component: {fileID: 1972302976995690896}
   - component: {fileID: 6952528919101373115}
-  - component: {fileID: 2462987728166968598}
   - component: {fileID: 988119214027951391}
+  - component: {fileID: -4260679792782358731}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -134,8 +134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beginning: {fileID: 0}
+  stake: {fileID: 0}
   end: {fileID: 0}
-  speed: 2
+  gameManager: {fileID: 0}
+  conductor: {fileID: 0}
 --- !u!61 &6952528919101373115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,35 +181,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1}
   m_EdgeRadius: 0
---- !u!50 &2462987728166968598
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103148768863978098}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &988119214027951391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3ecab979897e34d8130fb9468c14b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
+  arrowSprites:
   - {fileID: 21300000, guid: e7bb4d87002196d4e8c48ebc27246ad8, type: 3}
   - {fileID: 21300000, guid: 7898416cee7bfd04a8be28cbde77b39e, type: 3}
   - {fileID: 21300000, guid: cf995d8e07c45a8469f6720679ecc0d0, type: 3}
@@ -229,6 +204,34 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d7afc9dfc024b544a8aabc0625a72889, type: 3}
   - {fileID: 21300000, guid: 9b8997bd1ff5b964b83423df019b984d, type: 3}
   - {fileID: 21300000, guid: c1eef2687df038d4299fef74d012b150, type: 3}
+  stake: {fileID: 0}
+--- !u!50 &-4260679792782358731
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103148768863978098}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5436891708817390881
 GameObject:
   m_ObjectHideFlags: 0

@@ -370,6 +370,8 @@ GameObject:
   - component: {fileID: 84695595}
   - component: {fileID: 84695594}
   - component: {fileID: 84695596}
+  - component: {fileID: 84695597}
+  - component: {fileID: 84695598}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -389,9 +391,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8a04d153a43844eb22c5cbae614036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSound: {fileID: 8300000, guid: bfe9f987f43c42e4e85bbf9d0d4e418e, type: 3}
+  player1Instrument:
+  - {fileID: 8300000, guid: 3dd4ff2b81196e84e95f91c5dfe86201, type: 3}
+  player2Instrument:
+  - {fileID: 8300000, guid: 09adab52bf6d1ec4295b88fb975157bc, type: 3}
   missSound: {fileID: 8300000, guid: fb79453a240f33a409e06e245ef0413a, type: 3}
-  modeChangeSound: {fileID: 8300000, guid: fcafbc45203852241b2af0199606574a, type: 3}
+  modeChangeSound: {fileID: 8300000, guid: 766d5a6f000d3ec46a2eec7ab3295ea0, type: 3}
   victoryTheme: {fileID: 8300000, guid: fc1bad31e55be47488a35c6ccc8d5842, type: 3}
   failureTheme: {fileID: 8300000, guid: 13a52986aed6c9d429bbdab72e19ece4, type: 3}
 --- !u!4 &84695595
@@ -419,9 +424,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f6578c2fbbcb534d9f6396ef972def1, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 49e03363b53aab046ad062117c36eb56, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -505,6 +510,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &84695597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84695593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34460f50d62eb94683859f132d995da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 84695596}
+  songBpm: 56
+  firstBeatOffset: 0.85
+  paddingBeforeStart: 4
+  songPositionInBeats: 0
+--- !u!114 &84695598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84695593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4c3b86517067344857096c2f315a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorModeSwitchBeats: []
 --- !u!1 &97694817
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +565,7 @@ Transform:
   m_GameObject: {fileID: 97694817}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2, z: 2.819669}
+  m_LocalPosition: {x: 0.07, y: 2, z: 2.819669}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -700,7 +735,7 @@ Transform:
   m_GameObject: {fileID: 201844671}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.83, y: -3.4300003, z: 0}
+  m_LocalPosition: {x: 0.06, y: -3.4300003, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5867, z: 0.5867}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1590,7 +1625,7 @@ Transform:
   m_GameObject: {fileID: 633442272}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.55, y: 1.1099999, z: 5.048667}
+  m_LocalPosition: {x: -1.802, y: 1.1099999, z: 5.048667}
   m_LocalScale: {x: 1.249998, y: 0.99000186, z: 0.85618085}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1680,9 +1715,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player2IsAI: 1
   ChanceOfAISucceeding: 1
-  MaxHealth: 10
-  SpawnIntervalInSeconds: 1
-  ColorModeChangeChanceIntervalInSeconds: 3
+  MaxHealth: 50
+  ColorModeChangeChanceIntervalInSeconds: 4
   ColorModeChangeChance: 0.35
   Player1HealthBar: {fileID: 887606850}
   Player2HealthBar: {fileID: 1242800202}
@@ -2583,7 +2617,7 @@ Transform:
   m_GameObject: {fileID: 1145477366}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2, z: 2.819669}
+  m_LocalPosition: {x: 0.248, y: 2, z: 2.819669}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3369,9 +3403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tile: {fileID: 1103148768863978098, guid: aeaf0c2731a2d6445a95871f7ebb6603, type: 3}
-  ColorModeChanger: {fileID: 0}
   _player1LoliBehaviour: {fileID: 225793332}
   _player2LoliBehaviour: {fileID: 1188464022}
+  beatsShownInAdvance: 3
 --- !u!1 &1411025650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,7 +3541,7 @@ GameObject:
   - component: {fileID: 1453529811}
   - component: {fileID: 1453529813}
   m_Layer: 0
-  m_Name: stake
+  m_Name: Stake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3574,7 +3608,7 @@ Transform:
   m_GameObject: {fileID: 1453529810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.53, y: -3.4300003, z: 0}
+  m_LocalPosition: {x: -7, y: -3.4300003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3787,7 +3821,7 @@ Transform:
   m_GameObject: {fileID: 1640937711}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.57, y: 1.11, z: 0}
+  m_LocalPosition: {x: -2.0000002, y: 1.11, z: 0}
   m_LocalScale: {x: -1.25, y: 0.99, z: 0.85618085}
   m_ConstrainProportionsScale: 0
   m_Children: []
