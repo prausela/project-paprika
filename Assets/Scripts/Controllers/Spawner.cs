@@ -14,6 +14,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private LoliBehaviour _player1LoliBehaviour;
     [SerializeField] private LoliBehaviour _player2LoliBehaviour;
 
+    [SerializeField] private StakeFlashAnimator _player1StakeFlashAnimator;
+    [SerializeField] private StakeFlashAnimator _player2StakeFlashAnimator;
+
     public float beatsShownInAdvance;
     private int nextNoteIndexToSpawn = 0;
     private int nextColorSwitchIndex = 0;
@@ -40,6 +43,8 @@ public class Spawner : MonoBehaviour
             pressOnStake.stake = stake;
             pressOnStake.SetLoliBehaviour(Player.PLAYER_1, _player1LoliBehaviour);
             pressOnStake.SetLoliBehaviour(Player.PLAYER_2, _player2LoliBehaviour);
+            pressOnStake.SetStakeFlashAnimator(Player.PLAYER_1, _player1StakeFlashAnimator);
+            pressOnStake.SetStakeFlashAnimator(Player.PLAYER_2, _player2StakeFlashAnimator);
             
             PathMover pathMover = tile.GetComponent<PathMover>();
             pathMover.SetNoteBeat(sheet.notes[nextNoteIndexToSpawn].beat);

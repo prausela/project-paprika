@@ -29,7 +29,11 @@ public class PressKeyOnStake : MonoBehaviour
     // Player -> Behaviour of the character (controls poses)
     private Dictionary<Player, LoliBehaviour> characterBehaviour = new Dictionary<Player, LoliBehaviour>();
 
+    // Player -> HitFlash Object
+    private Dictionary<Player, StakeFlashAnimator> characterFlash = new Dictionary<Player, StakeFlashAnimator>();
+
     public void SetLoliBehaviour(Player player, LoliBehaviour loliBehaviour) => characterBehaviour[player] = loliBehaviour;
+    public void SetStakeFlashAnimator(Player player, StakeFlashAnimator stakeFlashAnimator) => characterFlash[player] = stakeFlashAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -139,8 +143,10 @@ public class PressKeyOnStake : MonoBehaviour
                     playerSuccess[player] = NoteState.MISSED;
 
                 if(characterBehaviour[player] != null) {
-                    if(playerSuccess[player] == NoteState.PLAYED)
+                    if(playerSuccess[player] == NoteState.PLAYED){
                         characterBehaviour[player].GotIt();
+                        characterFlash[player].Flash();
+                    }
                     else
                         characterBehaviour[player].DidntGetIt();
                 }
