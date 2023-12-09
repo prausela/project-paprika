@@ -522,14 +522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34460f50d62eb94683859f132d995da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secPerBeat: 0
-  songPosition: 0
-  songPositionInBeats: 0
-  dspSongTime: 0
   musicSource: {fileID: 84695596}
   songBpm: 56
   firstBeatOffset: 0.85
-  secondsUntilStart: 3
+  paddingBeforeStart: 4
+  songPositionInBeats: 0
 --- !u!114 &84695598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3408,7 +3405,7 @@ MonoBehaviour:
   Tile: {fileID: 1103148768863978098, guid: aeaf0c2731a2d6445a95871f7ebb6603, type: 3}
   _player1LoliBehaviour: {fileID: 225793332}
   _player2LoliBehaviour: {fileID: 1188464022}
-  beatsShownInAdvance: 4
+  beatsShownInAdvance: 3
 --- !u!1 &1411025650
 GameObject:
   m_ObjectHideFlags: 0

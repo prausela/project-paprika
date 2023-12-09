@@ -9,25 +9,23 @@ using UnityEngine;
 public class Conductor : MonoBehaviour
 {
 
-    //The number of seconds for each song beat
-    public float secPerBeat;
-
-    //Current song position, in seconds
-    public float songPosition;
+    //An AudioSource attached to this GameObject that will play the music.
+    public AudioSource musicSource;
+    public float songBpm;
+    public float firstBeatOffset;
+    public float paddingBeforeStart;
 
     //Current song position, in beats
     public float songPositionInBeats;
 
+    //The number of seconds for each song beat
+    private float secPerBeat;
+
+    //Current song position, in seconds
+    private float songPosition;
+
     //How many seconds have passed since the song started
-    public float dspSongTime;
-
-    //an AudioSource attached to this GameObject that will play the music.
-    public AudioSource musicSource;
-
-    public float songBpm;
-    public float firstBeatOffset;
-    
-    public float secondsUntilStart;
+    private float dspSongTime;
 
     void Start()
     {
@@ -36,16 +34,12 @@ public class Conductor : MonoBehaviour
 
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
-/*
-        songPosition = -secondsUntilStart;
-        songPositionInBeats = songPosition / secPerBeat;
-        yield return new WaitForSeconds(secondsUntilStart);
-*/
+        
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
-        musicSource.PlayScheduled(AudioSettings.dspTime + secondsUntilStart);
+        musicSource.PlayScheduled(AudioSettings.dspTime + paddingBeforeStart);
     }
 
     void Update()
@@ -53,7 +47,7 @@ public class Conductor : MonoBehaviour
         if(musicSource.isPlaying)
         {
             //determine how many seconds since the song started
-            songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset - secondsUntilStart);
+            songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset - paddingBeforeStart);
 
             //determine how many beats since the song started
             songPositionInBeats = songPosition / secPerBeat;
