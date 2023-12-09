@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class Constants {
@@ -25,14 +26,17 @@ public static class Constants {
         {TileColor.GREEN, new Color(0.658f, 1f, 0.658f)},
         {TileColor.RED, new Color(1f, 0.729f, 0.729f)},
         {TileColor.BLUE, new Color(0.561f, 0.843f, 1f)},
+        {TileColor.GREY, new Color(255f, 255f, 255f)},
     };
 
-    public static readonly Dictionary<TileColor, Arrow> colorNameToKeyCodeMap = new Dictionary<TileColor, Arrow> {
+    public static readonly Dictionary<TileColor, Arrow> colorNameToArrowMap = new Dictionary<TileColor, Arrow> {
         {TileColor.YELLOW, Arrow.UP},
         {TileColor.GREEN, Arrow.DOWN},
         {TileColor.RED, Arrow.RIGHT},
         {TileColor.BLUE, Arrow.LEFT},
     };
+
+    public static readonly Dictionary<Arrow, TileColor> arrowToColorName = colorNameToArrowMap.ToDictionary(x => x.Value, x => x.Key);
 
     private static readonly TileArrow[] tileArrows = new TileArrow[] {
         TileArrow.UP,

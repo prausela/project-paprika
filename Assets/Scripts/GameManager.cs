@@ -27,12 +27,15 @@ public class GameManager : MonoBehaviour
     public Image Player1HealthBar;
     public Image Player2HealthBar;
 
+    public GameObject Player1ButtonGroup;
+    public GameObject Player2ButtonGroup;
+    private Dictionary<Arrow, GameObject> Player1Buttons = new Dictionary<Arrow, GameObject>();
+    private Dictionary<Arrow, GameObject> Player2Buttons =  new Dictionary<Arrow, GameObject>();
+
     public GameObject Player1VictoryCard;
     public GameObject Player2VictoryCard;
     public GameObject TieVictoryCard;
 
-    public GameObject Player1Buttons;
-    public GameObject Player2Buttons;
     public AudioManager AudioManager;
 
     public HashSet<PressKeyOnStake> Tiles = new HashSet<PressKeyOnStake>();
@@ -44,17 +47,39 @@ public class GameManager : MonoBehaviour
     private double _songDuration;
     private double _timeElapsed;
 
+    void InitializePlayerButtons(){
+        Player1Buttons[Arrow.UP] = Player1ButtonGroup.transform.Find("UpButton").gameObject;
+        Player1Buttons[Arrow.LEFT] = Player1ButtonGroup.transform.Find("LeftButton").gameObject;
+        Player1Buttons[Arrow.RIGHT] = Player1ButtonGroup.transform.Find("RightButton").gameObject;
+        Player1Buttons[Arrow.DOWN] = Player1ButtonGroup.transform.Find("DownButton").gameObject;
+
+        Player2Buttons[Arrow.UP] = Player2ButtonGroup.transform.Find("UpButton").gameObject;
+        Player2Buttons[Arrow.LEFT] = Player2ButtonGroup.transform.Find("LeftButton").gameObject;
+        Player2Buttons[Arrow.RIGHT] = Player2ButtonGroup.transform.Find("RightButton").gameObject;
+        Player2Buttons[Arrow.DOWN] = Player2ButtonGroup.transform.Find("DownButton").gameObject;
+    }
+
     public void SwitchColorModePlayer(bool playSound=true) {
         if(playSound)
             AudioManager.PlayModeChangeSound();
         
         Player1InColorMode = !Player1InColorMode;
 
-        Player1Buttons.transform.Find("ArrowButtons").gameObject.SetActive(!Player1InColorMode);
-        Player1Buttons.transform.Find("ColorButtons").gameObject.SetActive(Player1InColorMode);
-
-        Player2Buttons.transform.Find("ArrowButtons").gameObject.SetActive(Player1InColorMode);
-        Player2Buttons.transform.Find("ColorButtons").gameObject.SetActive(!Player1InColorMode);
+        if(Player1InColorMode) {
+            foreach(Arrow d in Enum.GetValues(typeof(Arrow))){
+                Player1Buttons[d].GetComponent<SpriteRenderer>().color = Constants.colorNameToColorMap[Constants.arrowToColorName[d]];
+                Player2Buttons[d].GetComponent<SpriteRenderer>().color = Constants.colorNameToColorMap[TileColor.GREY];
+                Player1Buttons[d].transform.Find("Arrow").gameObject.SetActive(false);
+                Player2Buttons[d].transform.Find("Arrow").gameObject.SetActive(true);
+            }
+        } else {
+            foreach(Arrow d in Enum.GetValues(typeof(Arrow))){
+                Player1Buttons[d].GetComponent<SpriteRenderer>().color = Constants.colorNameToColorMap[TileColor.GREY];
+                Player2Buttons[d].GetComponent<SpriteRenderer>().color = Constants.colorNameToColorMap[Constants.arrowToColorName[d]];
+                Player1Buttons[d].transform.Find("Arrow").gameObject.SetActive(true);
+                Player2Buttons[d].transform.Find("Arrow").gameObject.SetActive(false);
+            }
+        }
 
         foreach(PressKeyOnStake tile in Tiles) {
             tile.SetColorModeForPlayer(Player1InColorMode ? Player.PLAYER_1 : Player.PLAYER_2);
@@ -70,6 +95,7 @@ public class GameManager : MonoBehaviour
         _songDuration = _audioManager.clip.length + 3f;
         _timeElapsed = 0;
         
+        InitializePlayerButtons();
         SwitchColorModePlayer(false);
 
         Player1Health = MaxHealth/2;
