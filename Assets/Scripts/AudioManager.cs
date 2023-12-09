@@ -23,6 +23,8 @@ public class AudioManager : MonoBehaviour
     {
         if(inColorMode){
             switch(note.color){
+                /*
+                // TODO: Get someone who actually knows how to play decent music
                 case TileColor.GREEN:
                     _audioSource.PlayOneShot(instrument[1]);        // C#
                     break;
@@ -35,13 +37,16 @@ public class AudioManager : MonoBehaviour
                 case TileColor.YELLOW:
                     _audioSource.PlayOneShot(instrument[10]);       // A#
                     break;
+                */
                 default:
-                    _audioSource.PlayOneShot(instrument[11]);       // B
+                    _audioSource.PlayOneShot(instrument[0]);       // C
                     break;
             }
         }
         else{
             switch(note.arrow){
+                /*
+                // TODO: Get someone who actually knows how to play decent music
                 case TileArrow.DOWN:
                     _audioSource.PlayOneShot(instrument[0]);    // C
                     break;
@@ -66,6 +71,7 @@ public class AudioManager : MonoBehaviour
                 case TileArrow.UP:
                     _audioSource.PlayOneShot(instrument[11]);   // B
                     break;
+                */
                 default:
                     _audioSource.PlayOneShot(instrument[0]);    // C
                     break;
