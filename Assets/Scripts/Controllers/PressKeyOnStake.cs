@@ -15,6 +15,7 @@ public class PressKeyOnStake : MonoBehaviour
     private AudioManager audioManager;
     
     private bool inContactWithStake = false;
+    private const float DistanceToStakeForAIHit = 0.35f;
 
     // Player -> Keys that must be pressed to play the note
     private Dictionary<Player, List<KeyCode>> noteKeys = new Dictionary<Player, List<KeyCode>>();
@@ -86,7 +87,7 @@ public class PressKeyOnStake : MonoBehaviour
             }
 
             if(playerSuccess[Player.PLAYER_2] == NoteState.PENDING) {
-                if(gameManager.Player2IsAI && transform.position.x <= stake.transform.position.x) {
+                if(gameManager.Player2IsAI && (transform.position.x - stake.transform.position.x) <= DistanceToStakeForAIHit) {
                     bool notePlayedByAI = UnityEngine.Random.Range(0f, 1f) < gameManager.ChanceOfAISucceeding;
                     playerSuccess[Player.PLAYER_2] = notePlayedByAI? NoteState.PLAYED : NoteState.MISSED;
                 } else {
@@ -106,9 +107,6 @@ public class PressKeyOnStake : MonoBehaviour
     }
     
     NoteState checkPlayerInput(Player player) {
-        foreach(KeyCode key in pressedKeys[player].Keys.ToList()) {
-            pressedKeys[player][key] = false;
-        }
         foreach(KeyCode key in pressedKeys[player].Keys.Where(key => Input.GetKeyDown(key)).ToList()) {
             pressedKeys[player][key] = true;
         }
@@ -116,20 +114,19 @@ public class PressKeyOnStake : MonoBehaviour
         // Assume note was hit until proven otherwise
         bool noteHit = true;
         foreach(KeyCode key in pressedKeys[player].Keys) {
-
             // Pressed wrong key (instant failure)
             if(pressedKeys[player][key] == true && !noteKeys[player].Contains(key)){
                 return NoteState.MISSED;
             }
                 
             // Did not press required key
-            if(pressedKeys[player][key] == false && noteKeys[player].Contains(key)){
+            if(noteKeys[player].Contains(key) && pressedKeys[player][key] == false){
                 noteHit = false;
             }
         }
 
         if(noteHit)
-            return NoteState.PLAYED;
+            return NoteState.PLAYED;            
         return NoteState.PENDING;       
     }
 
