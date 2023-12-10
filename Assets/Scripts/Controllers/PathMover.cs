@@ -17,6 +17,7 @@ public class PathMover : MonoBehaviour
     private float beatsShownInAdvance;
 
     public void SetNoteBeat(float noteBeat) => _noteBeat = noteBeat;
+    private bool passedStake;
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +46,10 @@ public class PathMover : MonoBehaviour
         transform.position = beginning.transform.position;
 
         originPosition = transform.position;
-        targetPosition = transform.position;
-        targetPosition.x = stake.transform.position.x;
+        targetPosition = stake.transform.position;
         this.beatsShownInAdvance = beginning.GetComponent<Spawner>().beatsShownInAdvance;
+
+        passedStake = false;
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -64,13 +66,22 @@ public class PathMover : MonoBehaviour
         
         float lerpPercentage = (beatsShownInAdvance - (_noteBeat - conductor.songPositionInBeats)) / beatsShownInAdvance;
 
+        if(passedStake){
+            originPosition = stake.transform.position;
+            targetPosition = originPosition;
+            targetPosition.x = originPosition.x - Mathf.Abs(beginning.transform.position.x - stake.transform.position.x);
+        } else {
+            originPosition = beginning.transform.position;
+            targetPosition = stake.transform.position;
+        }
+
         // If note has passed stake, repeat trajectory starting from the stake (this should keep the same tempo with which is reached the stake)
         if(transform.position.x <= stake.transform.position.x){
             lerpPercentage -= 1; // If we passed stake, lerpPercentage will be greater than 1 and therefore jump right to targetPosition
-
-            if(originPosition.x == beginning.transform.position.x){
-                originPosition.x = transform.position.x;
-                targetPosition.x = originPosition.x - Mathf.Abs(beginning.transform.position.x - stake.transform.position.x);
+            if(!passedStake){
+                passedStake = true;
+                //originPosition = transform.position;
+                //targetPosition.x = originPosition.x - Mathf.Abs(beginning.transform.position.x - stake.transform.position.x);
             }
         }
 
