@@ -68,7 +68,7 @@ public class PathMover : MonoBehaviour
 
         if(passedStake){
             originPosition = stake.transform.position;
-            targetPosition = originPosition;
+            targetPosition = end.transform.position;
             targetPosition.x = originPosition.x - Mathf.Abs(beginning.transform.position.x - stake.transform.position.x);
         } else {
             originPosition = beginning.transform.position;
@@ -80,8 +80,8 @@ public class PathMover : MonoBehaviour
             lerpPercentage -= 1; // If we passed stake, lerpPercentage will be greater than 1 and therefore jump right to targetPosition
             if(!passedStake){
                 passedStake = true;
-                //originPosition = transform.position;
-                //targetPosition.x = originPosition.x - Mathf.Abs(beginning.transform.position.x - stake.transform.position.x);
+                originPosition = transform.position;
+                targetPosition.x = originPosition.x - Mathf.Abs(beginning.transform.position.x - stake.transform.position.x);
             }
         }
 
