@@ -6,6 +6,7 @@ public class StakeFlashAnimator : MonoBehaviour
 {
     public float loopDuration = 0.25f;
     private Vector3 peakScale;
+    private const float growAnimationPercentage = 0.025f;
 
     void Start()
     {
@@ -18,8 +19,8 @@ public class StakeFlashAnimator : MonoBehaviour
     }
 
     IEnumerator AnimateFlash(){
-        yield return StartCoroutine(Resize(peakScale, loopDuration*0.05f));
-        yield return StartCoroutine(Resize(new Vector3(0,0,0), loopDuration*0.95f));
+        yield return StartCoroutine(Resize(peakScale, loopDuration*growAnimationPercentage));
+        yield return StartCoroutine(Resize(new Vector3(0,0,0), loopDuration*(1-growAnimationPercentage)));
     }
 
     IEnumerator Resize(Vector3 targetScale, float time){
