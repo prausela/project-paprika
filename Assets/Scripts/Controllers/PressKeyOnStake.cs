@@ -76,7 +76,7 @@ public class PressKeyOnStake : MonoBehaviour
     void Update()
     {
         if(inContactWithStake) {
-            if(playerSuccess[Player.PLAYER_1] == NoteState.PENDING)
+            if(note.playerAssignment[Player.PLAYER_1] && playerSuccess[Player.PLAYER_1] == NoteState.PENDING)
             {
                 playerSuccess[Player.PLAYER_1] = checkPlayerInput(Player.PLAYER_1);
 
@@ -90,7 +90,7 @@ public class PressKeyOnStake : MonoBehaviour
                 }
             }
 
-            if(playerSuccess[Player.PLAYER_2] == NoteState.PENDING) {
+            if(note.playerAssignment[Player.PLAYER_2] && playerSuccess[Player.PLAYER_2] == NoteState.PENDING) {
                 if(gameManager.Player2IsAI && (transform.position.x - stake.transform.position.x) <= DistanceToStakeForAIHit) {
                     bool notePlayedByAI = UnityEngine.Random.Range(0f, 1f) < gameManager.ChanceOfAISucceeding;
                     playerSuccess[Player.PLAYER_2] = notePlayedByAI? NoteState.PLAYED : NoteState.MISSED;
@@ -139,16 +139,20 @@ public class PressKeyOnStake : MonoBehaviour
             inContactWithStake = false;
 
             foreach(Player player in Enum.GetValues(typeof(Player))){
-                if(playerSuccess[player] == NoteState.PENDING)
-                    playerSuccess[player] = NoteState.MISSED;
+                if(note.playerAssignment[player]){
+                    if(playerSuccess[player] == NoteState.PENDING)
+                        playerSuccess[player] = NoteState.MISSED;
 
-                if(characterBehaviour[player] != null) {
-                    if(playerSuccess[player] == NoteState.PLAYED){
-                        characterBehaviour[player].GotIt();
-                        characterFlash[player].Flash();
+                    if(characterBehaviour[player] != null) {
+                        if(playerSuccess[player] == NoteState.PLAYED){
+                            characterBehaviour[player].GotIt();
+                            characterFlash[player].Flash();
+                        }
+                        else
+                            characterBehaviour[player].DidntGetIt();
                     }
-                    else
-                        characterBehaviour[player].DidntGetIt();
+                } else {
+                    playerSuccess[player] = NoteState.PLAYED;
                 }
             }
 
