@@ -6,7 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip[] player1Instrument;
     public AudioClip[] player2Instrument;
-    public AudioClip missSound;
+    public AudioClip player1MissSound;
+    public AudioClip player2MissSound;
     public AudioClip modeChangeSound;
     public AudioClip victoryTheme;
     public AudioClip failureTheme;
@@ -91,12 +92,12 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPlayer1MissSound()
     {
-        _audioSource.PlayOneShot(missSound);
+        _audioSource.PlayOneShot(player1MissSound);
     }
 
     public void PlayPlayer2MissSound()
     {
-        _audioSource.PlayOneShot(missSound);
+        _audioSource.PlayOneShot(player2MissSound);
     }
 
     public void PlayModeChangeSound()
