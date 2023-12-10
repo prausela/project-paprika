@@ -33,4 +33,20 @@ public class LoliBehaviour : MonoBehaviour
         _loliCorrect2.SetActive(false);
         _loliIncorrect.SetActive(true);
     }
+
+    public void GoNeutral()
+    {
+        _loliReady.SetActive(true);
+        _loliCorrect.SetActive(false);
+        _loliCorrect2.SetActive(false);
+        _loliIncorrect.SetActive(false);
+    }
+
+    public void Celebrate()
+    {
+        _loliReady.SetActive(false);
+        _loliCorrect.SetActive(false);
+        _loliCorrect2.SetActive(true);
+        _loliIncorrect.SetActive(false);
+    }
 }

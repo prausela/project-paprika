@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int Player1Health { get; private set; } = 5;
     public int Player2Health { get; private set; } = 5;
 
+    public LightningAnimator lightning;
     public Image Player1HealthBar;
     public Image Player2HealthBar;
 
@@ -31,6 +32,11 @@ public class GameManager : MonoBehaviour
     public GameObject Player2ButtonGroup;
     private Dictionary<Arrow, GameObject> Player1Buttons = new Dictionary<Arrow, GameObject>();
     private Dictionary<Arrow, GameObject> Player2Buttons =  new Dictionary<Arrow, GameObject>();
+
+    // Player -> Behaviour of the character (controls poses)
+    private Dictionary<Player, LoliBehaviour> characterBehaviour = new Dictionary<Player, LoliBehaviour>();
+    public LoliBehaviour Player1Behaviour;
+    public LoliBehaviour Player2Behaviour;
 
     public GameObject Player1VictoryCard;
     public GameObject Player2VictoryCard;
@@ -59,9 +65,11 @@ public class GameManager : MonoBehaviour
         Player2Buttons[Arrow.DOWN] = Player2ButtonGroup.transform.Find("DownButton").gameObject;
     }
 
-    public void SwitchColorModePlayer(bool playSound=true) {
+    public void SwitchColorModePlayer(bool playSound=true, bool lightningStrike=true) {
         if(playSound)
             AudioManager.PlayModeChangeSound();
+        if(lightningStrike)
+            lightning.Flash();
         
         Player1InColorMode = !Player1InColorMode;
 
@@ -96,7 +104,7 @@ public class GameManager : MonoBehaviour
         _timeElapsed = 0;
         
         InitializePlayerButtons();
-        SwitchColorModePlayer(false);
+        SwitchColorModePlayer(false, false);
 
         Player1Health = MaxHealth/2;
         Player2Health = MaxHealth/2;
@@ -147,12 +155,21 @@ public class GameManager : MonoBehaviour
     void EndGame(Player? winner) {
         gameOver = true;
 
-        if(winner == null)
+        if(winner == null){
             TieVictoryCard.SetActive(true);
-        else if(winner == Player.PLAYER_1)
+            Player1Behaviour.GoNeutral();
+            Player2Behaviour.GoNeutral();
+        }
+        else if(winner == Player.PLAYER_1){
             Player1VictoryCard.SetActive(true);
-        else
+            Player1Behaviour.Celebrate();
+            Player2Behaviour.DidntGetIt();
+        }
+        else{
             Player2VictoryCard.SetActive(true);
+            Player1Behaviour.DidntGetIt();
+            Player2Behaviour.Celebrate();
+        }
 
         if(Player2IsAI && winner == Player.PLAYER_2)
             AudioManager.PlayFailureTheme();
