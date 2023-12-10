@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ButtonPressAnimator : MonoBehaviour
 {
+    public bool blockedIfAIOpponent = false;
+    private bool interactionDisabled = false;
     public KeyCode key;
     public float animationDelay = 0.05f;
 
@@ -18,13 +20,18 @@ public class ButtonPressAnimator : MonoBehaviour
 
     void Start()
     {
-        originalPosition = transform.localPosition;
-        pressedPosition = originalPosition - new Vector3(0, 0.1932f, 0);
+        if(blockedIfAIOpponent){
+            GameManager gameManager = GameObject.Find("GameManager").gameObject.GetComponent<GameManager>();
+            interactionDisabled = gameManager.Player2IsAI;
+        }
+        if(!interactionDisabled){
+            originalPosition = transform.localPosition;
+            pressedPosition = originalPosition - new Vector3(0, 0.1932f, 0);
 
-        originalScale = transform.localScale;
-        pressedScale = originalScale;
-        pressedScale.y *= 0.8f;
-
+            originalScale = transform.localScale;
+            pressedScale = originalScale;
+            pressedScale.y *= 0.8f;
+        }
         shadow = gameObject.transform.Find("Shadow").gameObject;
         shadow.SetActive(false);
         pressed = false;
@@ -32,13 +39,15 @@ public class ButtonPressAnimator : MonoBehaviour
 
     void Update()
     {
-        if(!pressed && Input.GetKey(key)){
-            pressed = true;
-            StartCoroutine(PressButton());
-        }
-        else if (pressed && !Input.GetKey(key)){
-            pressed = false;
-            StartCoroutine(ReleaseButton());
+        if(!interactionDisabled){
+            if(!pressed && Input.GetKey(key)){
+                pressed = true;
+                StartCoroutine(PressButton());
+            }
+            else if (pressed && !Input.GetKey(key)){
+                pressed = false;
+                StartCoroutine(ReleaseButton());
+            }
         }
     }
 

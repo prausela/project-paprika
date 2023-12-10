@@ -45,8 +45,8 @@ public class LoliBehaviour : MonoBehaviour
     public void Celebrate()
     {
         _loliReady.SetActive(false);
-        _loliCorrect.SetActive(false);
-        _loliCorrect2.SetActive(true);
+        _loliCorrect.SetActive(true);
+        _loliCorrect2.SetActive(false);
         _loliIncorrect.SetActive(false);
     }
 }
