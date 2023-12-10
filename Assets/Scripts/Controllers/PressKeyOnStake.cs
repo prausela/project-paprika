@@ -82,6 +82,7 @@ public class PressKeyOnStake : MonoBehaviour
 
                 switch(playerSuccess[Player.PLAYER_1]){
                     case NoteState.PLAYED:
+                        characterFlash[Player.PLAYER_1].Flash();
                         audioManager.PlayPlayer1Note(this.note, gameManager.Player1InColorMode);
                         break;
                     case NoteState.MISSED:
@@ -100,6 +101,7 @@ public class PressKeyOnStake : MonoBehaviour
 
                 switch(playerSuccess[Player.PLAYER_2]){
                     case NoteState.PLAYED:
+                        characterFlash[Player.PLAYER_2].Flash();
                         audioManager.PlayPlayer2Note(this.note, !gameManager.Player1InColorMode);
                         break;
                     case NoteState.MISSED:
@@ -146,7 +148,6 @@ public class PressKeyOnStake : MonoBehaviour
                     if(characterBehaviour[player] != null) {
                         if(playerSuccess[player] == NoteState.PLAYED){
                             characterBehaviour[player].GotIt();
-                            characterFlash[player].Flash();
                         }
                         else
                             characterBehaviour[player].DidntGetIt();

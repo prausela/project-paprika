@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonPressAnimator : MonoBehaviour
 {
     public KeyCode key;
+    public float animationDelay = 0.05f;
 
     private Vector3 originalPosition;
     private Vector3 pressedPosition;
@@ -13,6 +14,7 @@ public class ButtonPressAnimator : MonoBehaviour
     private Vector3 pressedScale;
 
     private GameObject shadow;
+    private bool pressed;
 
     void Start()
     {
@@ -25,19 +27,36 @@ public class ButtonPressAnimator : MonoBehaviour
 
         shadow = gameObject.transform.Find("Shadow").gameObject;
         shadow.SetActive(false);
+        pressed = false;
     }
 
     void Update()
     {
-        if(Input.GetKey(key)){
-            transform.localPosition = pressedPosition;
-            transform.localScale = pressedScale;
-            shadow.SetActive(true);
+        if(!pressed && Input.GetKey(key)){
+            pressed = true;
+            StartCoroutine(PressButton());
         }
-        else{
-            transform.localPosition = originalPosition;
-            transform.localScale = originalScale;
-            shadow.SetActive(false);
+        else if (pressed && !Input.GetKey(key)){
+            pressed = false;
+            StartCoroutine(ReleaseButton());
+        }
+    }
+
+    IEnumerator PressButton(){
+        shadow.SetActive(true);
+        yield return StartCoroutine(Resize(originalPosition, originalScale, pressedPosition, pressedScale, animationDelay));
+    }
+
+    IEnumerator ReleaseButton(){
+        shadow.SetActive(false);
+        yield return StartCoroutine(Resize(pressedPosition, pressedScale, originalPosition, originalScale, animationDelay));
+    }
+
+    IEnumerator Resize(Vector3 startingPosition, Vector3 startingScale, Vector3 targetPosition, Vector3 targetScale, float time){
+        for(float t = 0; t < 1; t += Time.deltaTime / time){
+            transform.localPosition = Vector3.Lerp(startingPosition, targetPosition, t);
+            transform.localScale = Vector3.Lerp(startingScale, targetScale, t);
+            yield return null; // Wait until next frame
         }
     }
 }

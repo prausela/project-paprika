@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825518ddb15d43b4a901c585d1c5ab8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loopDuration: 0.25
+  loopDuration: 0.3
 --- !u!1 &168629776
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 119
+  animationDelay: 0.05
 --- !u!1 &201844671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,7 +1941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825518ddb15d43b4a901c585d1c5ab8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loopDuration: 0.25
+  loopDuration: 0.3
 --- !u!212 &835475957
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2237,6 +2238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 273
+  animationDelay: 0.05
 --- !u!212 &1068883828
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2732,6 +2734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 115
+  animationDelay: 0.05
 --- !u!1 &1262935860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3166,6 +3169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 275
+  animationDelay: 0.05
 --- !u!212 &1367627659
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3421,6 +3425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 100
+  animationDelay: 0.05
 --- !u!1 &1453529810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3960,6 +3965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 97
+  animationDelay: 0.05
 --- !u!1 &1810489976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4428,6 +4434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 274
+  animationDelay: 0.05
 --- !u!212 &1942758505
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4612,6 +4619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 276
+  animationDelay: 0.05
 --- !u!212 &1996951261
 SpriteRenderer:
   m_ObjectHideFlags: 0

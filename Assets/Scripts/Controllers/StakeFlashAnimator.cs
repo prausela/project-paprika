@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StakeFlashAnimator : MonoBehaviour
 {
-    public float loopDuration = 0.25f;
+    public float loopDuration = 0.3f;
     private Vector3 peakScale;
     private const float growAnimationPercentage = 0.025f;
 
