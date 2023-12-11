@@ -441,7 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 84695596}
   songBpm: 56
-  firstBeatOffset: 0.85
+  firstBeatOffset: 0.75
   paddingBeforeStart: 4
   songPositionInBeats: 0
 --- !u!114 &84695598
